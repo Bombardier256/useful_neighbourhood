@@ -4,19 +4,20 @@ from django.db import models
 from useful_neighbourhood import settings
 
 
-class Section(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
 
 class Service(models.Model):
-    section = models.ForeignKey(
-        Section,
-        on_delete=models.CASCADE,
-        related_name="services"
-    )
     name = models.CharField(max_length=255)
     description = models.TextField()
     free_of_charge = models.BooleanField(default=True)
+    is_lending = models.BooleanField(default=False)
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.CASCADE,
+        related_name="services"
+    )
     price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
@@ -25,25 +26,17 @@ class Service(models.Model):
     )
 
     class Meta:
-        unique_together = ("section", "name",)
+        unique_together = ("category", "name",)
         ordering = ["name"]
 
     def __str__(self):
         return self.name
 
 
-class Lending(Service):
-    deposit = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-    )
-
-
 class Neighbour(AbstractUser):
-    service = models.ManyToManyField(Service, related_name="n-service", blank=True)
-    lending = models.ManyToManyField(Lending, related_name="n-lending", blank=True)
+    service = models.ManyToManyField(Service, related_name="neighbours", blank=True)
     apartment = models.IntegerField() # 1 - 1000
-    #phone = models.IntegerField() # len == 9
+    phone = models.CharField(max_length=13) # len == 9
 
     class Meta:
         ordering = ["apartment"]
@@ -53,14 +46,15 @@ class Neighbour(AbstractUser):
 
 
 class Request(models.Model):
-    section = models.ForeignKey(
-        Section,
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    date = models.DateField(auto_now=True)
+    complete = models.BooleanField(default=False)
+    category = models.ForeignKey(
+        Category,
         on_delete=models.CASCADE,
         related_name="requests"
     )
-    name = models.CharField(max_length=255)
-    description = models.TextField()
-    date = models.DateField()
     neighbour = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -72,7 +66,6 @@ class Request(models.Model):
         blank=True,
         null=True
     )
-    complete = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["-date"]
