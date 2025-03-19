@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class LendAsistConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'lend_assist'
+class LendAssistConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "lend_assist"
