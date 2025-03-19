@@ -40,8 +40,8 @@ class Lending(Service):
 
 
 class Neighbour(AbstractUser):
-    service = models.ManyToManyField(Service, related_name="users", blank=True)
-    lending = models.ManyToManyField(Lending, related_name="users", blank=True)
+    service = models.ManyToManyField(Service, related_name="n-service", blank=True)
+    lending = models.ManyToManyField(Lending, related_name="n-lending", blank=True)
     apartment = models.IntegerField() # 1 - 1000
     #phone = models.IntegerField() # len == 9
 
