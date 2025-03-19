@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+from useful_neighbourhood import settings
+
 
 class Section(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -37,6 +39,19 @@ class Lending(Service):
     )
 
 
+class Neighbour(AbstractUser):
+    service = models.ManyToManyField(Service, related_name="users")
+    lending = models.ManyToManyField(Lending, related_name="users")
+    apartment = models.IntegerField() # 1 - 1000
+    #phone = models.IntegerField() # len == 9
+
+    class Meta:
+        ordering = ["apartment"]
+
+    def __str__(self):
+        return f"({self.first_name} app. {self.apartment})"
+
+
 class Request(models.Model):
     section = models.ForeignKey(
         Section,
@@ -46,6 +61,11 @@ class Request(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     date = models.DateField()
+    neighbour = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="requests"
+    )
     reward = models.DecimalField(
         max_digits=10,
         decimal_places=2,
@@ -59,17 +79,3 @@ class Request(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Neighbour(AbstractUser):
-    service = models.ManyToManyField(Service, related_name="users")
-    lending = models.ManyToManyField(Lending, related_name="users")
-    request = models.ManyToManyField(Request, related_name="users")
-    apartment = models.IntegerField() # 1 - 1000
-    #phone = models.IntegerField() # len == 9
-
-    class Meta:
-        ordering = ["apartment"]
-
-    def __str__(self):
-        return f"({self.first_name} app. {self.apartment})"
