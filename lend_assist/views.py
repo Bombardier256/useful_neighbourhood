@@ -1,4 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from lend_assist.models import Category, Service
 from lend_assist.models import Neighbour, Request
@@ -23,3 +27,9 @@ def index(request):
 
     return render(request, "lend_assist/index.html", context=context)
 
+
+class NeighbourListView(generic.ListView):
+    model = Neighbour
+    context_object_name = "user_list"
+    template_name = "lend_assist/user_list.html"
+    paginate_by = 10
