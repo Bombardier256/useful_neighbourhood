@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Request List
+
+  </h1>
+
+  {% if request_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Date</th>
+      </tr>
+
+      {% for request in request_list %}
+        <tr>
+          <td>
+              {{ request.id }}
+          </td>
+          <td>
+              {{ request.name }}
+          </td>
+          <td>
+              {{ request.description }}
+          </td>
+          <td>
+              {{ request.date }}
+          </td>
+
+      {% endfor %}
+    </table>
+
+  {% else %}
+      <p>There are no requests in the request.</p>
+  {% endif %}
+{% endblock %}
