@@ -33,30 +33,9 @@ class Service(models.Model):
         return self.name
 
 
-class Level(models.Model):
-    name = models.CharField(max_length=255)
-
-
-class Expertise(models.Model):
-    name = models.CharField(max_length=255)
-    description = models.TextField(blank=True)
-    level = models.ForeignKey(
-        Level,
-        on_delete=models.CASCADE,
-        related_name="expertises"
-    )
-
-
 class Neighbour(AbstractUser):
     apartment = models.IntegerField() # 1 - 1000
     phone = models.CharField(max_length=13) # len == 9
-    expertise = models.ForeignKey(
-        Expertise,
-        on_delete=models.CASCADE,
-        related_name="neighbours",
-        blank=True,
-        null=True
-    )
     service = models.ManyToManyField(
         Service,
         related_name="neighbours",
