@@ -33,5 +33,19 @@ class NeighbourAdmin(UserAdmin):
         )
     )
 
-admin.site.register(Service)
-admin.site.register(Request)
+
+@admin.register(Request)
+class RequestAdmin(admin.ModelAdmin):
+    list_display = [
+        "name", "date", "complete", "category", "neighbour", "reward", "description",
+    ]
+    search_fields = ["name", "description"]
+    list_filter = ["category", "date"]
+
+@admin.register(Service)
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = [
+        "name", "category", "is_lending", "free_of_charge", "price", "description",
+    ]
+    search_fields = ["name", "description"]
+    list_filter = ["category", "is_lending"]
