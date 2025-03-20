@@ -1,8 +1,8 @@
 <ul class="sidebar-nav list-group">
 
 
-  <li class="list-group-item"><a href="#">Home</a></li>
-  <li class="list-group-item"><a href="#">All drivers</a></li>
-  <li class="list-group-item"><a href="#">All cars</a></li>
-  <li class="list-group-item"><a href="#">All manufacturers</a></li>
+  <li class="list-group-item"><a href="{% url 'lend_assist:index' %}">Home</a></li>
+  <li class="list-group-item"><a href="{% url 'lend_assist:user-list' %}">Neighbours</a></li>
+  <li class="list-group-item"><a href="{% url 'lend_assist:service-list' %}">Services</a></li>
+  <li class="list-group-item"><a href="{% url 'lend_assist:request-list' %}">Requests</a></li>
 </ul>
