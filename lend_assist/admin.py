@@ -42,6 +42,7 @@ class RequestAdmin(admin.ModelAdmin):
     search_fields = ["name", "description"]
     list_filter = ["category", "date"]
 
+
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
     list_display = [
@@ -49,3 +50,6 @@ class ServiceAdmin(admin.ModelAdmin):
     ]
     search_fields = ["name", "description"]
     list_filter = ["category", "is_lending"]
+
+
+#admin.site.register(Manufacturer)
