@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Service List
+
+  </h1>
+
+  {% if service_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+      </tr>
+
+      {% for service in service_list %}
+        <tr>
+          <td>
+              {{ service.id }}
+          </td>
+          <td>
+              {{ service.name }}
+          </td>
+          <td>
+              {{ service.description }}
+          </td>
+          <td>
+              {{ service.price }}
+          </td>
+
+      {% endfor %}
+    </table>
+
+  {% else %}
+      <p>There are no services in the service.</p>
+  {% endif %}
+{% endblock %}

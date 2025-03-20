@@ -33,3 +33,15 @@ class NeighbourListView(generic.ListView):
     context_object_name = "user_list"
     template_name = "lend_assist/user_list.html"
     paginate_by = 10
+
+
+class ServiceListView(generic.ListView):
+    model = Service
+    template_name = "lend_assist/service_list.html"
+    paginate_by = 10
+
+
+class RequestListView(generic.ListView):
+    model = Request
+    template_name = "lend_assist/request_list.html"
+    paginate_by = 10
