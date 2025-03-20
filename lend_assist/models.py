@@ -7,6 +7,9 @@ from useful_neighbourhood import settings
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
+    class Meta:
+        verbose_name_plural = "Categories"
+
 
 class Service(models.Model):
     name = models.CharField(max_length=255)
@@ -34,7 +37,7 @@ class Service(models.Model):
 
 
 class Neighbour(AbstractUser):
-    apartment = models.IntegerField() # 1 - 1000
+    address = models.CharField(max_length=255, null=True, blank=True)
     phone = models.CharField(max_length=13) # len == 9
     service = models.ManyToManyField(
         Service,
@@ -43,10 +46,10 @@ class Neighbour(AbstractUser):
     )
 
     class Meta:
-        ordering = ["apartment"]
+        ordering = ["username"]
 
     def __str__(self):
-        return f"({self.first_name} app. {self.apartment})"
+        return self.username
 
 
 class Request(models.Model):
