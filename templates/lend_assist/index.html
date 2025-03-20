@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Useful Neighbourhood</h1>
+  <p>Welcome to platform where neighbours can share goods and provide services to each other</p>
+  <h2>Dynamic content</h2>
+  <p>The Useful Neighbourhood has the following record counts:</p>
+  <ul>
+    <li><strong>Neighbours:</strong> {{ num_users }}</li>
+    <li><strong>Services:</strong> {{ num_services }}</li>
+    <li><strong>Requests:</strong> {{ num_requests }}</li>
+  </ul>
+
+  <p>You have visited this page
+      {{ num_visits }} time{{ num_visits|pluralize }}.
+  </p>
+
+{% endblock %}
