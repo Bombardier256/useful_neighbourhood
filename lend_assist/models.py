@@ -36,7 +36,10 @@ class Service(models.Model):
     description = models.TextField()
     free_of_charge = models.BooleanField(default=True)
     is_lending = models.BooleanField(default=False)
-    neighbours = models.ManyToManyField(Neighbour, related_name="services")
+    neighbours = models.ManyToManyField(
+        Neighbour,
+        related_name="services"
+    )
     category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,
@@ -57,7 +60,9 @@ class Service(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("lend_assist:service-detail", kwargs={"pk": self.pk})
+        return reverse(
+            "lend_assist:service-detail", kwargs={"pk": self.pk}
+        )
 
 
 class Request(models.Model):
@@ -70,7 +75,10 @@ class Request(models.Model):
         on_delete=models.CASCADE,
         related_name="requests"
     )
-
+    neighbours = models.ManyToManyField(
+        Neighbour,
+        related_name="services"
+    )
     reward = models.DecimalField(
         max_digits=10,
         decimal_places=2,
@@ -85,4 +93,6 @@ class Request(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("lend_assist:request-detail", kwargs={"pk": self.pk})
+        return reverse(
+            "lend_assist:request-detail", kwargs={"pk": self.pk}
+        )
