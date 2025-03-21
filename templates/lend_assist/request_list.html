@@ -3,7 +3,9 @@
 {% block content %}
   <h1>
     Request List
-
+    <a href="{% url 'lend_assist:request-create' %}" class="btn btn-primary link-to-page">
+      Create request
+    </a>
   </h1>
 
   {% if request_list %}
