@@ -39,6 +39,9 @@ class Service(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("lend_assist:service-detail", kwargs={"pk": self.pk})
+
 
 class Neighbour(AbstractUser):
     address = models.CharField(max_length=255, null=True, blank=True)

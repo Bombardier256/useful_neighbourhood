@@ -21,7 +21,7 @@
               {{ service.id }}
           </td>
           <td>
-              {{ service.name }}
+              <a href="{{ service.get_absolute_url }}">{{ service.name }}</a>
           </td>
           <td>
               {{ service.description }}

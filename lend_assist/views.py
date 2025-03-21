@@ -47,6 +47,10 @@ class ServiceListView(generic.ListView):
     template_name = "lend_assist/service_list.html"
     paginate_by = 10
 
+class ServiceDetailView(generic.DetailView):
+    model = Service
+    context_object_name = "service"
+
 
 class RequestListView(generic.ListView):
     model = Request
