@@ -70,11 +70,7 @@ class Request(models.Model):
         on_delete=models.CASCADE,
         related_name="requests"
     )
-    neighbour = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="requests"
-    )
+
     reward = models.DecimalField(
         max_digits=10,
         decimal_places=2,
