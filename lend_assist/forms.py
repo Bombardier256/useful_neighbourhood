@@ -27,6 +27,12 @@ class ServiceCreateForm(forms.ModelForm):
         fields = "__all__"
 
 
+class ServiceUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Service
+        fields = "__all__"
+
+
 class RequestCreateForm(forms.ModelForm):
     class Meta:
         model = Request
