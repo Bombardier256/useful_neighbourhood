@@ -16,6 +16,7 @@ from .views import (
     ServiceUpdateView,
     RequestUpdateView,
     NeighbourDeleteView,
+    ServiceDeleteView,
 )
 
 
@@ -66,7 +67,11 @@ urlpatterns = [
         ServiceUpdateView.as_view(),
         name="service-update",
     ),
-
+    path(
+        "services/<int:pk>/delete/",
+        ServiceDeleteView.as_view(),
+        name="service-delete",
+    ),
     path(
         "requests/",
         RequestListView.as_view(),
