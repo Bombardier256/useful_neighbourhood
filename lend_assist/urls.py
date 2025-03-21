@@ -11,7 +11,7 @@ from .views import (
     RequestDetailView,
     NeighbourCreateView,
     ServiceCreateView,
-    RequestCreateView,
+    RequestCreateView, NeighbourUpdateView,
 )
 
 
@@ -31,6 +31,11 @@ urlpatterns = [
         "users/create/",
         NeighbourCreateView.as_view(),
         name="user-create",
+    ),
+    path(
+        "users/<int:pk>/update/",
+        NeighbourUpdateView.as_view(),
+        name="user-update",
     ),
 
     path(
