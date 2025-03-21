@@ -11,7 +11,10 @@ from .views import (
     RequestDetailView,
     NeighbourCreateView,
     ServiceCreateView,
-    RequestCreateView, NeighbourUpdateView, ServiceUpdateView,
+    RequestCreateView,
+    NeighbourUpdateView,
+    ServiceUpdateView,
+    RequestUpdateView,
 )
 
 
@@ -73,6 +76,11 @@ urlpatterns = [
         "requests/create/",
         RequestCreateView.as_view(),
         name="request-create",
+    ),
+    path(
+        "requests/<int:pk>/update/",
+        RequestUpdateView.as_view(),
+        name="request-update",
     ),
 ]
 
