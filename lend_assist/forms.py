@@ -13,3 +13,13 @@ class NeighbourCreateForm(forms.ModelForm):
     class Meta:
         model = Neighbour
         fields = ("username", "first_name", "last_name", "phone", "address", "email")
+
+
+class ServiceCreateForm(forms.ModelForm):
+    class Meta:
+        model = Service
+
+
+class RequestCreateForm(forms.ModelForm):
+    class Meta:
+        model = Request
