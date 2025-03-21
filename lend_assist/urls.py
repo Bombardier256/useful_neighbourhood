@@ -11,6 +11,7 @@ from .views import (
     RequestDetailView,
     NeighbourCreateView,
     ServiceCreateView,
+    RequestCreateView,
 )
 
 
@@ -56,6 +57,11 @@ urlpatterns = [
         "requests/<int:pk>/",
         RequestDetailView.as_view(),
         name="request-detail",
+    ),
+    path(
+        "requests/create/",
+        RequestCreateView.as_view(),
+        name="request-create",
     ),
 ]
 
