@@ -49,7 +49,7 @@ class Neighbour(AbstractUser):
     )
 
     class Meta:
-        ordering = ["username"]
+        ordering = ["-username"]
 
     def __str__(self):
         return self.username
