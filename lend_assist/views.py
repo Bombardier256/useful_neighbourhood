@@ -115,3 +115,8 @@ class RequestUpdateView(generic.UpdateView):
     model = Request
     form_class = RequestUpdateForm
     success_url = reverse_lazy("lend_assist:request-list")
+
+
+class RequestDeleteView(generic.DeleteView):
+    model = Request
+    success_url = reverse_lazy("lend_assist:request-list")
