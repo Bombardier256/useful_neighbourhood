@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Request category: {{ request.category }}
+  </h1>
+
+  <p><strong>Name:</strong> {{ request.name }}</p>
+  <p><strong>Description:</strong> {{ request.description }}</p>
+  <p><strong>Date of creation:</strong> {{ request.date }}</p>
+  <p><strong>Reward:</strong> {{ request.reward }}</p>
+
+  <div class="ml-3">
+    <h4>Neighbours interested in this service</h4>
+
+    {% for user in service.users.all %}
+        <hr>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Address:</strong> {{ user.address }}</p>
+        <p><strong>phone:</strong> {{ user.phone }}</p>
+        <p class="text-muted"><strong>!!!!Price!!!!:</strong> {{request.reward}}</p>
+
+    {% empty %}
+      <p>No interest to this service!</p>
+    {% endfor %}
+
+  </div>
+{% endblock %}

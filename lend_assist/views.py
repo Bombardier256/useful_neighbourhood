@@ -56,3 +56,7 @@ class RequestListView(generic.ListView):
     model = Request
     template_name = "lend_assist/request_list.html"
     paginate_by = 10
+
+
+class RequestDetailView(generic.DetailView):
+    model = Request

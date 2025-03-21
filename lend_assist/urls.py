@@ -8,6 +8,7 @@ from .views import (
     RequestListView,
     NeighbourDetailView,
     ServiceDetailView,
+    RequestDetailView,
 )
 
 
@@ -38,6 +39,11 @@ urlpatterns = [
         "requests/",
         RequestListView.as_view(),
         name="request-list",
+    ),
+    path(
+        "requests/<int:pk>/",
+        RequestDetailView.as_view(),
+        name="request-detail",
     ),
 ]
 
