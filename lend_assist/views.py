@@ -90,6 +90,11 @@ class ServiceUpdateView(generic.UpdateView):
     success_url = reverse_lazy("lend_assist:service-list")
 
 
+class ServiceDeleteView(generic.DeleteView):
+    model = Service
+    success_url = reverse_lazy("lend_assist:service-list")
+
+
 class RequestListView(generic.ListView):
     model = Request
     template_name = "lend_assist/request_list.html"
