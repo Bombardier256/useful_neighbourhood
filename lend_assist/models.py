@@ -15,6 +15,20 @@ class Category(models.Model):
         return self.name
 
 
+class Neighbour(AbstractUser):
+    address = models.CharField(max_length=255, null=True, blank=True)
+    phone = models.CharField(max_length=13) # len == 9
+
+    class Meta:
+        ordering = ["-username"]
+
+    def __str__(self):
+        return self.username
+
+    def get_absolute_url(self):
+        return reverse("lend_assist:user-detail", kwargs={"pk": self.pk})
+
+
 class Service(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
@@ -41,25 +55,6 @@ class Service(models.Model):
 
     def get_absolute_url(self):
         return reverse("lend_assist:service-detail", kwargs={"pk": self.pk})
-
-
-class Neighbour(AbstractUser):
-    address = models.CharField(max_length=255, null=True, blank=True)
-    phone = models.CharField(max_length=13) # len == 9
-    service = models.ManyToManyField(
-        Service,
-        related_name="neighbours",
-        blank=True
-    )
-
-    class Meta:
-        ordering = ["-username"]
-
-    def __str__(self):
-        return self.username
-
-    def get_absolute_url(self):
-        return reverse("lend_assist:user-detail", kwargs={"pk": self.pk})
 
 
 class Request(models.Model):
