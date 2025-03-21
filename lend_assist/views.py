@@ -35,6 +35,13 @@ class NeighbourListView(generic.ListView):
     paginate_by = 10
 
 
+class NeighbourDetailView(generic.DetailView):
+    model = Neighbour
+    success_url = reverse_lazy("lend_assist:user_list")
+    template_name = "lend_assist/user_detail.html"
+    context_object_name = "user"
+
+
 class ServiceListView(generic.ListView):
     model = Service
     template_name = "lend_assist/service_list.html"

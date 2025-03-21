@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 from useful_neighbourhood import settings
 
@@ -53,6 +54,9 @@ class Neighbour(AbstractUser):
 
     def __str__(self):
         return self.username
+
+    def get_absolute_url(self):
+        return reverse("lend_assist:user-detail", kwargs={"pk": self.pk})
 
 
 class Request(models.Model):

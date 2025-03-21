@@ -6,6 +6,7 @@ from .views import (
     NeighbourListView,
     ServiceListView,
     RequestListView,
+    NeighbourDetailView,
 )
 
 
@@ -15,6 +16,11 @@ urlpatterns = [
         "users/",
         NeighbourListView.as_view(),
         name="user-list",
+    ),
+    path(
+        "users/<int:pk>/",
+        NeighbourDetailView.as_view(),
+        name="user-detail",
     ),
 
     path(
