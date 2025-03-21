@@ -26,7 +26,9 @@ class Neighbour(AbstractUser):
         return self.username
 
     def get_absolute_url(self):
-        return reverse("lend_assist:user-detail", kwargs={"pk": self.pk})
+        return reverse(
+            "lend_assist:user-detail", kwargs={"pk": self.pk}
+        )
 
 
 class Service(models.Model):
@@ -34,6 +36,7 @@ class Service(models.Model):
     description = models.TextField()
     free_of_charge = models.BooleanField(default=True)
     is_lending = models.BooleanField(default=False)
+    neighbours = models.ManyToManyField(Neighbour, related_name="services")
     category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,
