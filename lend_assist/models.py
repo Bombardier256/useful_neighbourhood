@@ -77,7 +77,7 @@ class Request(models.Model):
     )
     neighbours = models.ManyToManyField(
         Neighbour,
-        related_name="services"
+        related_name="requests"
     )
     reward = models.DecimalField(
         max_digits=10,
