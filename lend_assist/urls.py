@@ -9,6 +9,7 @@ from .views import (
     NeighbourDetailView,
     ServiceDetailView,
     RequestDetailView,
+    NeighbourCreateView,
 )
 
 
@@ -23,6 +24,11 @@ urlpatterns = [
         "users/<int:pk>/",
         NeighbourDetailView.as_view(),
         name="user-detail",
+    ),
+    path(
+        "users/create/",
+        NeighbourCreateView.as_view(),
+        name="user-create",
     ),
 
     path(

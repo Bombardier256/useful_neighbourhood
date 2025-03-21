@@ -4,8 +4,8 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from lend_assist.models import Category, Service
-from lend_assist.models import Neighbour, Request
+from lend_assist.forms import NeighbourCreateForm
+from lend_assist.models import Service, Neighbour, Request
 
 
 def index(request):
@@ -42,6 +42,15 @@ class NeighbourDetailView(generic.DetailView):
     context_object_name = "user"
 
 
+class NeighbourCreateView(generic.CreateView):
+    model = Neighbour
+    form_class = NeighbourCreateForm
+    context_object_name = "user"
+    success_url = reverse_lazy("lend_assist:service-list")
+    template_name = "lend_assist/user_form.html"
+
+
+
 class ServiceListView(generic.ListView):
     model = Service
     template_name = "lend_assist/service_list.html"
@@ -49,7 +58,6 @@ class ServiceListView(generic.ListView):
 
 class ServiceDetailView(generic.DetailView):
     model = Service
-    context_object_name = "service"
 
 
 class RequestListView(generic.ListView):
