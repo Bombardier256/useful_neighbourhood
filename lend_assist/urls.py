@@ -11,7 +11,7 @@ from .views import (
     RequestDetailView,
     NeighbourCreateView,
     ServiceCreateView,
-    RequestCreateView, NeighbourUpdateView,
+    RequestCreateView, NeighbourUpdateView, ServiceUpdateView,
 )
 
 
@@ -53,6 +53,12 @@ urlpatterns = [
         ServiceCreateView.as_view(),
         name="service-create",
     ),
+    path(
+        "services/<int:pk>/update/",
+        ServiceUpdateView.as_view(),
+        name="service-update",
+    ),
+
     path(
         "requests/",
         RequestListView.as_view(),
