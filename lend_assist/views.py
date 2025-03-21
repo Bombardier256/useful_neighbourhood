@@ -63,6 +63,10 @@ class NeighbourUpdateView(generic.UpdateView):
     template_name = "lend_assist/user_form.html"
 
 
+class NeighbourDeleteView(generic.DeleteView):
+    model = Neighbour
+    success_url = reverse_lazy("lend_assist:index")
+
 class ServiceListView(generic.ListView):
     model = Service
     template_name = "lend_assist/service_list.html"
