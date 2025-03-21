@@ -10,6 +10,7 @@ from lend_assist.forms import (
     RequestCreateForm,
     NeighbourUpdateForm,
     ServiceUpdateForm,
+    RequestUpdateForm,
 )
 from lend_assist.models import Service, Neighbour, Request
 
@@ -96,4 +97,10 @@ class RequestDetailView(generic.DetailView):
 class RequestCreateView(generic.CreateView):
     model = Request
     form_class = RequestCreateForm
+    success_url = reverse_lazy("lend_assist:request-list")
+
+
+class RequestUpdateView(generic.UpdateView):
+    model = Request
+    form_class = RequestUpdateForm
     success_url = reverse_lazy("lend_assist:request-list")
