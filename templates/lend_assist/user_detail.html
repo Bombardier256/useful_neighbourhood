@@ -12,6 +12,16 @@
 
   <div class="ml-3">
     <h4>Services</h4>
+    <p>
+      <a href="{% url 'lend_assist:service-create' %}" class="btn btn-primary">
+          Create service
+      </a>
+    </p>
+    <p>
+      <a href="{% url 'lend_assist:request-create' %}" class="btn btn-primary">
+          Create request
+      </a>
+    </p>
 
     {% for service in neighbour.services.all %}
         <hr>
