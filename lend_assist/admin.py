@@ -26,7 +26,6 @@ class NeighbourAdmin(UserAdmin):
                         "last_name",
                         "address",
                         "phone",
-                        "service",
                     )
                 },
             ),
