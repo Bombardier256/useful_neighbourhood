@@ -46,7 +46,6 @@ class NeighbourDetailView(generic.DetailView):
     model = Neighbour
     success_url = reverse_lazy("lend_assist:user_list")
     template_name = "lend_assist/user_detail.html"
-    context_object_name = "user"
 
 
 class NeighbourCreateView(generic.CreateView):

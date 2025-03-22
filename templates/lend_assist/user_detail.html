@@ -2,18 +2,18 @@
 
 {% block content %}
   <h1>
-    Username: {{ user.username }}
+    username: {{ neighbour.username }}
   </h1>
 
-  <p><strong>First name:</strong> {{ user.first_name }}</p>
-  <p><strong>Last name:</strong> {{ user.last_name }}</p>
-  <p><strong>Address:</strong> {{ user.address }}</p>
-  <p><strong>Phone:</strong> {{ user.phone }}</p>
+  <p><strong>First name:</strong> {{ neighbour.first_name }}</p>
+  <p><strong>Last name:</strong> {{ neighbour.last_name }}</p>
+  <p><strong>Address:</strong> {{ neighbour.address }}</p>
+  <p><strong>Phone:</strong> {{ neighbour.phone }}</p>
 
   <div class="ml-3">
     <h4>Services</h4>
 
-    {% for service in user.services.all %}
+    {% for service in neighbour.services.all %}
         <hr>
         <p><strong>Name:</strong> {{ service.name }}</p>
         <p><strong>Category:</strong> {{ service.category.name }}</p>
