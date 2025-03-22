@@ -20,5 +20,11 @@
   <input type="submit" value="Login" class="btn btn-primary" />
   <input type="hidden" name="next" value="{{ next }}" />
 </form>
-
+  <br>
+  <p>or</p>
+<p>
+  <a href="{% url 'lend_assist:user-create' %}" class="btn btn-primary">
+      Create account
+  </a>
+</p>
 {% endblock %}

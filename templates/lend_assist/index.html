@@ -14,5 +14,10 @@
   <p>You have visited this page
       {{ num_visits }} time{{ num_visits|pluralize }}.
   </p>
+  <p>
+  <a href="{% url 'lend_assist:user-create' %}" class="btn btn-primary">
+      Create account
+  </a>
+  </p>
 
 {% endblock %}
