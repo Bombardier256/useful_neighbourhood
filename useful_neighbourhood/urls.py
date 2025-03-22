@@ -25,4 +25,5 @@ urlpatterns = [
     path(
        "", include("lend_assist.urls", namespace="lend_assist")
     ),
+    path("accounts/", include("django.contrib.auth.urls")),
 ]
