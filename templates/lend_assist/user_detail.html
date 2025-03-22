@@ -3,6 +3,12 @@
 {% block content %}
   <h1>
     username: {{ neighbour.username }}
+    <a href="{% url 'lend_assist:user-update' pk=neighbour.id %}" class="btn btn-primary">
+        Update profile
+    </a>
+    <a href="{% url 'lend_assist:user-delete' pk=neighbour.id %}" class="btn btn-primary">
+        Delete profile
+    </a>
   </h1>
 
   <p><strong>First name:</strong> {{ neighbour.first_name }}</p>
