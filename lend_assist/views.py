@@ -42,80 +42,80 @@ class NeighbourListView(generic.ListView):
     paginate_by = 10
 
 
-class NeighbourDetailView(generic.DetailView):
+class NeighbourDetailView(LoginRequiredMixin, generic.DetailView):
     model = Neighbour
     success_url = reverse_lazy("lend_assist:user_list")
     template_name = "lend_assist/user_detail.html"
 
 
-class NeighbourCreateView(generic.CreateView):
+class NeighbourCreateView(LoginRequiredMixin, generic.CreateView):
     model = Neighbour
     form_class = NeighbourCreateForm
     success_url = reverse_lazy("lend_assist:service-list")
     template_name = "lend_assist/user_form.html"
 
 
-class NeighbourUpdateView(generic.UpdateView):
+class NeighbourUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Neighbour
     form_class = NeighbourUpdateForm
     success_url = reverse_lazy("lend_assist:service-list")
     template_name = "lend_assist/user_form.html"
 
 
-class NeighbourDeleteView(generic.DeleteView):
+class NeighbourDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Neighbour
     success_url = reverse_lazy("lend_assist:index")
     template_name = "lend_assist/user_confirm_delete.html"
 
 
-class ServiceListView(generic.ListView):
+class ServiceListView(LoginRequiredMixin, generic.ListView):
     model = Service
     template_name = "lend_assist/service_list.html"
     paginate_by = 10
 
-class ServiceDetailView(generic.DetailView):
+class ServiceDetailView(LoginRequiredMixin, generic.DetailView):
     model = Service
 
 
-class ServiceCreateView(generic.CreateView):
+class ServiceCreateView(LoginRequiredMixin, generic.CreateView):
     model = Service
     form_class = ServiceCreateForm
     success_url = reverse_lazy("lend_assist:service-list")
 
 
-class ServiceUpdateView(generic.UpdateView):
+class ServiceUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Service
     form_class = ServiceUpdateForm
     success_url = reverse_lazy("lend_assist:service-list")
 
 
-class ServiceDeleteView(generic.DeleteView):
+class ServiceDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Service
     success_url = reverse_lazy("lend_assist:service-list")
 
 
-class RequestListView(generic.ListView):
+class RequestListView(LoginRequiredMixin, generic.ListView):
     model = Request
     template_name = "lend_assist/request_list.html"
     paginate_by = 10
 
 
-class RequestDetailView(generic.DetailView):
+class RequestDetailView(LoginRequiredMixin, generic.DetailView):
     model = Request
 
 
-class RequestCreateView(generic.CreateView):
+class RequestCreateView(LoginRequiredMixin, generic.CreateView):
     model = Request
     form_class = RequestCreateForm
     success_url = reverse_lazy("lend_assist:request-list")
 
 
-class RequestUpdateView(generic.UpdateView):
+class RequestUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Request
     form_class = RequestUpdateForm
     success_url = reverse_lazy("lend_assist:request-list")
 
 
-class RequestDeleteView(generic.DeleteView):
+class RequestDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Request
     success_url = reverse_lazy("lend_assist:request-list")
