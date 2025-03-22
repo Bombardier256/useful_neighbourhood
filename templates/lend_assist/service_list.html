@@ -2,14 +2,10 @@
 
 {% block content %}
   <h1>
-    Service List
+    Neighbours offer following services
     <a href="{% url 'lend_assist:service-create' %}" class="btn btn-primary">
         Create service
     </a>
-    <a href="{% url 'lend_assist:request-create' %}" class="btn btn-primary">
-        Create request
-    </a>
-
   </h1>
 
   {% if service_list %}
@@ -42,4 +38,10 @@
   {% else %}
       <p>There are no services in the service.</p>
   {% endif %}
+  <p>If you did not find suitable service describe your wishes in request form</p>
+  <p>
+    <a href="{% url 'lend_assist:request-create' %}" class="btn btn-primary">
+        Create request
+    </a>
+  </p>
 {% endblock %}
