@@ -14,7 +14,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class NeighbourAdmin(UserAdmin):
     list_display = UserAdmin.list_display + ("phone", "address",)
     fieldsets = UserAdmin.fieldsets + (
-        (("Additional info", {"fields": ("address", "phone", "service",)}),)
+        (("Additional info", {"fields": ("address", "phone",)}),)
     )
     add_fieldsets = UserAdmin.add_fieldsets + (
         (
