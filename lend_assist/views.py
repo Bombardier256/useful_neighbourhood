@@ -48,7 +48,7 @@ class NeighbourDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = "lend_assist/user_detail.html"
 
 
-class NeighbourCreateView(LoginRequiredMixin, generic.CreateView):
+class NeighbourCreateView(generic.CreateView):
     model = Neighbour
     form_class = NeighbourCreateForm
     success_url = reverse_lazy("lend_assist:service-list")
