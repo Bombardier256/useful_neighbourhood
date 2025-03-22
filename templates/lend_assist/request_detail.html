@@ -11,7 +11,7 @@
   <p><strong>Reward:</strong> {{ request.reward }}</p>
 
   <div class="ml-3">
-    <h4>Neighbours interested in this service</h4>
+    <h4>Neighbours requested this service</h4>
 
     {% for user in service.users.all %}
         <hr>
@@ -21,7 +21,7 @@
         <p class="text-muted"><strong>!!!!Price!!!!:</strong> {{request.reward}}</p>
 
     {% empty %}
-      <p>No interest to this service!</p>
+      <p>Only one neighbour requested!</p>
     {% endfor %}
 
   </div>
