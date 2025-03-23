@@ -36,7 +36,7 @@ class NeighbourAdmin(UserAdmin):
 @admin.register(Request)
 class RequestAdmin(admin.ModelAdmin):
     list_display = [
-        "name", "date", "complete", "category", "reward", "description",
+        "name", "date", "complete", "category", "description",
     ]
     search_fields = ["name", "description"]
     list_filter = ["category", "date"]
@@ -45,7 +45,7 @@ class RequestAdmin(admin.ModelAdmin):
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
     list_display = [
-        "name", "category", "is_lending", "free_of_charge", "price", "description",
+        "name", "category", "is_lending", "free_of_charge", "description",
     ]
     search_fields = ["name", "description"]
     list_filter = ["category", "is_lending"]

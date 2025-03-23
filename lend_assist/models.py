@@ -9,6 +9,7 @@ class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
     class Meta:
+        ordering = ["name"]
         verbose_name_plural = "Categories"
 
     def __str__(self):
@@ -45,12 +46,7 @@ class Service(models.Model):
         on_delete=models.CASCADE,
         related_name="services"
     )
-    price = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        blank=True,
-        null=True
-    )
+
 
     class Meta:
         unique_together = ("description", "name",)
@@ -78,12 +74,6 @@ class Request(models.Model):
     neighbours = models.ManyToManyField(
         Neighbour,
         related_name="requests"
-    )
-    reward = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        blank=True,
-        null=True
     )
 
     class Meta:
