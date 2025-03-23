@@ -28,16 +28,24 @@
           Create request
       </a>
     </p>
-
+    <p>You are providing following services</p>
     {% for service in neighbour.services.all %}
         <hr>
         <p><strong>Name:</strong> {{ service.name }}</p>
         <p><strong>Category:</strong> {{ service.category.name }}</p>
-        <p class="text-muted"><strong>Price:</strong> {{service.price}}</p>
 
     {% empty %}
       <p>No services!</p>
     {% endfor %}
+    <br>
+    <p>Your requests</p>
+    {% for requests in neighbour.requests.all %}
+        <hr>
+        <p><strong>Name:</strong> {{ requests.name }}</p>
+        <p><strong>Category:</strong> {{ requests.category.name }}</p>
 
+    {% empty %}
+      <p>No requests!</p>
+    {% endfor %}
   </div>
 {% endblock %}

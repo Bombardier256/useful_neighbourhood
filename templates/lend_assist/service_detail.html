@@ -11,16 +11,19 @@
   <div class="ml-3">
     <h4>Service providers</h4>
 
-    {% for user in service.users.all %}
+    {% for neighbour in service.neighbours.all %}
         <hr>
-        <p><strong>Username:</strong> {{ user.username }}</p>
-        <p><strong>Address:</strong> {{ user.address }}</p>
-        <p><strong>phone:</strong> {{ user.phone }}</p>
-        <p class="text-muted"><strong>!!!!Price!!!!:</strong> {{service.price}}</p>
+        <p><strong>Username:</strong> {{ neighbour.username }}</p>
+        <p><strong>Address:</strong> {{ neighbour.address }}</p>
+        <p><strong>phone:</strong> {{ neighbour.phone }}</p>
 
     {% empty %}
       <p>No services!</p>
     {% endfor %}
-
+  <p>
+    <a href="{% url 'lend_assist:service-neighbour-add' serv_pk=service.id user_pk=user.id %}">
+      Provide this service
+    </a>
+  </p>
   </div>
 {% endblock %}

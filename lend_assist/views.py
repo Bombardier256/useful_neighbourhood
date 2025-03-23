@@ -119,3 +119,11 @@ class RequestUpdateView(LoginRequiredMixin, generic.UpdateView):
 class RequestDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Request
     success_url = reverse_lazy("lend_assist:request-list")
+
+
+def service_neighbour_add(request, serv_pk: int, user_pk: int):
+    service = Service.objects.get(pk=serv_pk)
+    neighbour = Neighbour.objects.get(pk=user_pk)
+    service.neighbours.add(neighbour)
+    return index(request)
+
