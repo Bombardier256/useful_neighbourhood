@@ -13,8 +13,6 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
       </tr>
 
       {% for service in service_list %}
@@ -25,13 +23,6 @@
           <td>
               <a href="{{ service.get_absolute_url }}">{{ service.name }}</a>
           </td>
-          <td>
-              {{ service.description }}
-          </td>
-          <td>
-              {{ service.price }}
-          </td>
-
       {% endfor %}
     </table>
 
