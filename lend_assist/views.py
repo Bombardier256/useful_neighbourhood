@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -73,14 +73,30 @@ class ServiceListView(LoginRequiredMixin, generic.ListView):
     template_name = "lend_assist/service_list.html"
     paginate_by = 10
 
+
 class ServiceDetailView(LoginRequiredMixin, generic.DetailView):
     model = Service
 
 
-class ServiceCreateView(LoginRequiredMixin, generic.CreateView):
-    model = Service
-    form_class = ServiceCreateForm
-    success_url = reverse_lazy("lend_assist:service-list")
+def create_service(request):
+    neighbour = Neighbour.objects.get(pk=request.user.pk)
+
+    if not neighbour:
+        return redirect("lend_assist:user-create")
+
+    if request.method == "POST":
+        form = ServiceCreateForm(request.POST)
+        if form.is_valid():
+            service = form.save(commit=False)
+            service.save()
+            service.neighbours.add(neighbour)
+
+            return redirect("lend_assist:service-list")
+
+    else:
+        form = ServiceCreateForm()
+
+    return render(request, "lend_assist/service_form.html", {"form": form})
 
 
 class ServiceUpdateView(LoginRequiredMixin, generic.UpdateView):
@@ -125,5 +141,4 @@ def service_neighbour_add(request, serv_pk: int, user_pk: int):
     service = Service.objects.get(pk=serv_pk)
     neighbour = Neighbour.objects.get(pk=user_pk)
     service.neighbours.add(neighbour)
-    return index(request)
-
+    return redirect("lend_assist:service-list")

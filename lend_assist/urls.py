@@ -10,7 +10,6 @@ from .views import (
     ServiceDetailView,
     RequestDetailView,
     NeighbourCreateView,
-    ServiceCreateView,
     RequestCreateView,
     NeighbourUpdateView,
     ServiceUpdateView,
@@ -19,6 +18,7 @@ from .views import (
     ServiceDeleteView,
     RequestDeleteView,
     service_neighbour_add,
+    create_service,
 )
 
 
@@ -61,7 +61,7 @@ urlpatterns = [
     ),
     path(
         "services/create/",
-        ServiceCreateView.as_view(),
+        create_service,
         name="service-create",
     ),
     path(
