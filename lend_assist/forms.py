@@ -44,22 +44,22 @@ class NeighbourUpdateForm(forms.ModelForm):
 class ServiceCreateForm(forms.ModelForm):
     class Meta:
         model = Service
-        fields = "__all__"
+        exclude = ("neighbours",)
 
 
 class ServiceUpdateForm(forms.ModelForm):
     class Meta:
         model = Service
-        fields = "__all__"
+        exclude = ("neighbours",)
 
 
 class RequestCreateForm(forms.ModelForm):
     class Meta:
         model = Request
-        fields = "__all__"
+        exclude = ("neighbours",)
 
 
 class RequestUpdateForm(forms.ModelForm):
     class Meta:
         model = Request
-        fields = "__all__"
+        exclude = ("neighbours",)
