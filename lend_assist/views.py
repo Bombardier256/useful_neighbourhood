@@ -137,8 +137,8 @@ class RequestDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("lend_assist:request-list")
 
 
-def service_neighbour_add(request, serv_pk: int, user_pk: int):
+def service_neighbour_add(request, serv_pk: int):
     service = Service.objects.get(pk=serv_pk)
-    neighbour = Neighbour.objects.get(pk=user_pk)
+    neighbour = Neighbour.objects.get(pk=request.user.pk)
     service.neighbours.add(neighbour)
     return redirect("lend_assist:service-list")

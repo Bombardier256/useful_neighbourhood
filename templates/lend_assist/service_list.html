@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1>
-    Neighbours offer following services
+    Services in your neighbourhood
     <a href="{% url 'lend_assist:service-create' %}" class="btn btn-primary">
         Create service
     </a>
@@ -12,7 +12,8 @@
     <table class="table">
       <tr>
         <th>ID</th>
-        <th>Name</th>
+        <th>Service Name</th>
+        <th>Amount of providers</th>
       </tr>
 
       {% for service in service_list %}
@@ -22,6 +23,9 @@
           </td>
           <td>
               <a href="{{ service.get_absolute_url }}">{{ service.name }}</a>
+          </td>
+          <td>
+              {{ service.neighbours }}
           </td>
       {% endfor %}
     </table>

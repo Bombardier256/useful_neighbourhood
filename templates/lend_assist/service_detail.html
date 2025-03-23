@@ -21,7 +21,7 @@
       <p>No services!</p>
     {% endfor %}
   <p>
-    <a href="{% url 'lend_assist:service-neighbour-add' serv_pk=service.id user_pk=user.id %}">
+    <a href="{% url 'lend_assist:service-neighbour-add' serv_pk=service.id %}">
       Provide this service
     </a>
   </p>

@@ -75,7 +75,7 @@ urlpatterns = [
         name="service-delete",
     ),
     path(
-        "services/<int:serv_pk>/neighobour_add/<int:user_pk>",
+        "services/<int:serv_pk>/neighobour_add/",
         service_neighbour_add, name="service-neighbour-add"
     ),
     path(
