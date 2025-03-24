@@ -67,14 +67,14 @@
         {% for request in neighbour.requests.all %}
           <tr>
             <th>{{ request.id }}</th>
-            <th><strong>Name:</strong> {{ request.name }}</th>
+            <th>{{ request.name }}</th>
             <th>
               {% if user.username == request.author_username %}
               <a href="{% url 'lend_assist:request-update' pk=request.id %}" class="btn btn-primary">
-                Update request
+                Update request as author
               </a>
               <a href="{% url 'lend_assist:request-delete' pk=request.id %}" class="btn btn-primary">
-                Delete request
+                Delete request as author
               </a>
               {% endif %}
             </th>

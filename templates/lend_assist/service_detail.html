@@ -13,19 +13,20 @@
     {% endif %}
   </h1>
 
-  <p><strong>Name:</strong> {{ service.name }}</p>
+  <p><strong>Title:</strong> {{ service.name }}</p>
   <p><strong>Description:</strong> {{ service.description }}</p>
+  <p><strong>Author:</strong> {{ service.author_username }}</p>
 
   <ul>
     {% if user in service.neighbours.all %}
       <li>
-      <a href="{% url 'lend_assist:service-neighbour-remove' serv_pk=service.id %}">
+      <a href="{% url 'lend_assist:service-neighbour-remove' serv_pk=service.id %}" class="btn btn-primary">
         Remove me from service providers
       </a>
       </li>
     {% else %}
       <li>
-        <a href="{% url 'lend_assist:service-neighbour-add' serv_pk=service.id %}">
+        <a href="{% url 'lend_assist:service-neighbour-add' serv_pk=service.id %}" class="btn btn-primary">
           Provide this service
         </a>
       </li>
@@ -33,7 +34,7 @@
   </ul>
 
   <div class="ml-3">
-    <h4>Service providers</h4>
+    <h4>List of service providers</h4>
 
     {% for neighbour in service.neighbours.all %}
         <hr>

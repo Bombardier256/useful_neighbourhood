@@ -13,20 +13,21 @@
     {% endif %}
   </h1>
 
-  <p><strong>Name:</strong> {{ request.name }}</p>
+  <p><strong>Title:</strong> {{ request.name }}</p>
   <p><strong>Description:</strong> {{ request.description }}</p>
+  <p><strong>Author:</strong> {{ request.author_username }}</p>
   <p><strong>Date of creation:</strong> {{ request.date }}</p>
 
   <ul>
     {% if user in request.neighbours.all %}
       <li>
-      <a href="{% url 'lend_assist:request-neighbour-remove' req_pk=request.id %}">
+      <a href="{% url 'lend_assist:request-neighbour-remove' req_pk=request.id %}" class="btn btn-primary">
         Remove me from this request
       </a>
       </li>
     {% else %}
       <li>
-        <a href="{% url 'lend_assist:request-neighbour-add' req_pk=request.id %}">
+        <a href="{% url 'lend_assist:request-neighbour-add' req_pk=request.id %}" class="btn btn-primary">
           Join this request
         </a>
       </li>
@@ -34,7 +35,7 @@
   </ul>
 
   <div class="ml-3">
-    <h4>Neighbours joined this request</h4>
+    <h4>List of neighbours who joined this request</h4>
 
     {% for neighbour in request.neighbours.all %}
         <hr>
