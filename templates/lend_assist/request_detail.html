@@ -8,11 +8,22 @@
   <p><strong>Name:</strong> {{ request.name }}</p>
   <p><strong>Description:</strong> {{ request.description }}</p>
   <p><strong>Date of creation:</strong> {{ request.date }}</p>
-  <p>
-      <a href="{% url 'lend_assist:request-neighbour-add' req_pk=request.id %}">
-        Join this request
+
+  <ul>
+    {% if user in request.neighbours.all %}
+      <li>
+      <a href="{% url 'lend_assist:request-neighbour-remove' req_pk=request.id %}">
+        Remove me from this request
       </a>
-  </p>
+      </li>
+    {% else %}
+      <li>
+        <a href="{% url 'lend_assist:request-neighbour-add' req_pk=request.id %}">
+          Join this request
+        </a>
+      </li>
+    {% endif %}
+  </ul>
 
   <div class="ml-3">
     <h4>Neighbours joined this request</h4>
@@ -24,7 +35,7 @@
         <p><strong>phone:</strong> {{ neighbour.phone }}</p>
 
     {% empty %}
-      <p>Only one neighbour requested!</p>
+      <p>No one joined!</p>
     {% endfor %}
 
   </div>

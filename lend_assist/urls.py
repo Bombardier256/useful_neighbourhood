@@ -21,6 +21,7 @@ from .views import (
     service_neighbour_remove,
     create_service,
     request_neighbour_add,
+    request_neighbour_remove,
 )
 
 
@@ -112,6 +113,10 @@ urlpatterns = [
     path(
         "requests/<int:req_pk>/neighobour_add/",
         request_neighbour_add, name="request-neighbour-add"
+    ),
+    path(
+        "requests/<int:req_pk>/neighobour_remove/",
+        request_neighbour_remove, name="request-neighbour-remove"
     ),
 ]
 

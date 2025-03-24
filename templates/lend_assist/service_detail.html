@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1>
-    Services category: {{ service.category }}
+    Service detail
   </h1>
 
   <p><strong>Name:</strong> {{ service.name }}</p>
@@ -34,7 +34,7 @@
         <p><strong>phone:</strong> {{ neighbour.phone }}</p>
 
     {% empty %}
-      <p>No services!</p>
+      <p>No one provides this service!</p>
     {% endfor %}
 
   </div>
