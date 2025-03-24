@@ -120,10 +120,25 @@ class RequestDetailView(LoginRequiredMixin, generic.DetailView):
     model = Request
 
 
-class RequestCreateView(LoginRequiredMixin, generic.CreateView):
-    model = Request
-    form_class = RequestCreateForm
-    success_url = reverse_lazy("lend_assist:request-list")
+def create_request(request_data):
+    neighbour = Neighbour.objects.get(pk=request_data.user.pk)
+
+    if not neighbour:
+        return redirect("lend_assist:user-create")
+
+    if request_data.method == "POST":
+        form = RequestCreateForm(request_data.POST)
+        if form.is_valid():
+            request = form.save(commit=False)
+            request.save()
+            request.neighbours.add(neighbour)
+
+            return redirect("lend_assist:request-list")
+
+    else:
+        form = ServiceCreateForm()
+
+    return render(request_data, "lend_assist/request_form.html", {"form": form})
 
 
 class RequestUpdateView(LoginRequiredMixin, generic.UpdateView):
