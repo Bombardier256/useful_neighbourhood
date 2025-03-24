@@ -3,6 +3,14 @@
 {% block content %}
   <h1>
     Request detail
+    {% if user.username == request.author_username %}
+      <a href="{% url 'lend_assist:request-update' pk=request.id %}" class="btn btn-primary">
+          Update request
+      </a>
+      <a href="{% url 'lend_assist:request-delete' pk=request.id %}" class="btn btn-primary">
+          Delete request
+      </a>
+    {% endif %}
   </h1>
 
   <p><strong>Name:</strong> {{ request.name }}</p>

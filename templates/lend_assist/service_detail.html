@@ -3,6 +3,14 @@
 {% block content %}
   <h1>
     Service detail
+    {% if user.username == service.author_username %}
+      <a href="{% url 'lend_assist:service-update' pk=service.id %}" class="btn btn-primary">
+          Update service
+      </a>
+      <a href="{% url 'lend_assist:service-delete' pk=service.id %}" class="btn btn-primary">
+          Delete service
+      </a>
+    {% endif %}
   </h1>
 
   <p><strong>Name:</strong> {{ service.name }}</p>
