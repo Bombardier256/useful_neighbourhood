@@ -17,7 +17,6 @@
   <p><strong>Phone:</strong> {{ neighbour.phone }}</p>
 
   <div class="ml-3">
-    <h4>Services</h4>
     <p>
       <a href="{% url 'lend_assist:service-create' %}" class="btn btn-primary">
           Create service
@@ -28,24 +27,61 @@
           Create request
       </a>
     </p>
-    <p>You are providing following services</p>
-    {% for service in neighbour.services.all %}
-        <hr>
-        <p><strong>Name:</strong> {{ service.name }}</p>
-        <p><strong>Category:</strong> {{ service.category.name }}</p>
 
-    {% empty %}
-      <p>No services!</p>
-    {% endfor %}
+    {% if neighbour.services.all %}
+      <h4>Your Services</h4>
+      <table class="table">
+        <tr>
+          <th>Service ID</th>
+          <th>Service name</th>
+          <th></th>
+        </tr>
+        {% for service in neighbour.services.all %}
+          <tr>
+            <th>{{ service.id }}</th>
+            <th><strong>Name:</strong> {{ service.name }}</th>
+            <th>
+              {% if user.username == service.author_username %}
+              <a href="{% url 'lend_assist:service-update' pk=service.id %}" class="btn btn-primary">
+                Update service
+              </a>
+              <a href="{% url 'lend_assist:service-delete' pk=service.id %}" class="btn btn-primary">
+                Delete service
+              </a>
+              {% endif %}
+            </th>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
     <br>
-    <p>Your requests</p>
-    {% for requests in neighbour.requests.all %}
-        <hr>
-        <p><strong>Name:</strong> {{ requests.name }}</p>
-        <p><strong>Category:</strong> {{ requests.category.name }}</p>
 
-    {% empty %}
-      <p>No requests!</p>
-    {% endfor %}
+    {% if neighbour.requests.all %}
+      <h4>Your Requests</h4>
+      <table class="table">
+        <tr>
+          <th>Request ID</th>
+          <th>Request name</th>
+          <th></th>
+        </tr>
+        {% for request in neighbour.requests.all %}
+          <tr>
+            <th>{{ request.id }}</th>
+            <th><strong>Name:</strong> {{ request.name }}</th>
+            <th>
+              {% if user.username == request.author_username %}
+              <a href="{% url 'lend_assist:request-update' pk=request.id %}" class="btn btn-primary">
+                Update request
+              </a>
+              <a href="{% url 'lend_assist:request-delete' pk=request.id %}" class="btn btn-primary">
+                Delete request
+              </a>
+              {% endif %}
+            </th>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+
   </div>
 {% endblock %}
