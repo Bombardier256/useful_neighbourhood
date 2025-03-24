@@ -7,11 +7,23 @@
 
   <p><strong>Name:</strong> {{ service.name }}</p>
   <p><strong>Description:</strong> {{ service.description }}</p>
-  <p>
-    <a href="{% url 'lend_assist:service-neighbour-add' serv_pk=service.id %}">
-      Provide this service
-    </a>
-  </p>
+
+  <ul>
+    {% if user in service.neighbours.all %}
+      <li>
+      <a href="{% url 'lend_assist:service-neighbour-remove' serv_pk=service.id %}">
+        Remove me from service providers
+      </a>
+      </li>
+    {% else %}
+      <li>
+        <a href="{% url 'lend_assist:service-neighbour-add' serv_pk=service.id %}">
+          Provide this service
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+
   <div class="ml-3">
     <h4>Service providers</h4>
 

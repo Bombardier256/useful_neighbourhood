@@ -144,6 +144,13 @@ def service_neighbour_add(request, serv_pk: int):
     return redirect("lend_assist:service-list")
 
 
+def service_neighbour_remove(request, serv_pk: int):
+    service = Service.objects.get(pk=serv_pk)
+    neighbour = Neighbour.objects.get(pk=request.user.pk)
+    service.neighbours.remove(neighbour)
+    return redirect("lend_assist:service-list")
+
+
 def request_neighbour_add(request_data, req_pk: int):
     request = Request.objects.get(pk=req_pk)
     neighbour = Neighbour.objects.get(pk=request_data.user.pk)
