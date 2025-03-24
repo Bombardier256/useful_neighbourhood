@@ -34,6 +34,7 @@ class Neighbour(AbstractUser):
 
 class Service(models.Model):
     name = models.CharField(max_length=255)
+    author_username = models.CharField(max_length=50)
     description = models.TextField()
     free_of_charge = models.BooleanField(default=True)
     is_lending = models.BooleanField(default=False)
@@ -63,6 +64,7 @@ class Service(models.Model):
 
 class Request(models.Model):
     name = models.CharField(max_length=255)
+    author_username = models.CharField(max_length=50)
     description = models.TextField()
     date = models.DateField(auto_now=True)
     complete = models.BooleanField(default=False)

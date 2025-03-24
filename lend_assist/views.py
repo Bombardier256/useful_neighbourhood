@@ -90,6 +90,8 @@ def create_service(request):
             service = form.save(commit=False)
             service.save()
             service.neighbours.add(neighbour)
+            service.author_username = neighbour.username
+            service.save()
 
             return redirect("lend_assist:service-list")
 
@@ -132,6 +134,8 @@ def create_request(request_data):
             request = form.save(commit=False)
             request.save()
             request.neighbours.add(neighbour)
+            request.author_username = neighbour.username
+            request.save()
 
             return redirect("lend_assist:request-list")
 

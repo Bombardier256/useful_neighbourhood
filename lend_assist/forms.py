@@ -44,22 +44,22 @@ class NeighbourUpdateForm(forms.ModelForm):
 class ServiceCreateForm(forms.ModelForm):
     class Meta:
         model = Service
-        exclude = ("neighbours",)
+        exclude = ("neighbours", "author_username")
 
 
 class ServiceUpdateForm(forms.ModelForm):
     class Meta:
         model = Service
-        exclude = ("neighbours",)
+        exclude = ("neighbours", "author_username")
 
 
 class RequestCreateForm(forms.ModelForm):
     class Meta:
         model = Request
-        exclude = ("neighbours",)
+        exclude = ("neighbours", "author_username")
 
 
 class RequestUpdateForm(forms.ModelForm):
     class Meta:
         model = Request
-        exclude = ("neighbours",)
+        exclude = ("neighbours", "author_username")
