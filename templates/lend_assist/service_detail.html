@@ -7,7 +7,11 @@
 
   <p><strong>Name:</strong> {{ service.name }}</p>
   <p><strong>Description:</strong> {{ service.description }}</p>
-
+  <p>
+    <a href="{% url 'lend_assist:service-neighbour-add' serv_pk=service.id %}">
+      Provide this service
+    </a>
+  </p>
   <div class="ml-3">
     <h4>Service providers</h4>
 
@@ -20,10 +24,6 @@
     {% empty %}
       <p>No services!</p>
     {% endfor %}
-  <p>
-    <a href="{% url 'lend_assist:service-neighbour-add' serv_pk=service.id %}">
-      Provide this service
-    </a>
-  </p>
+
   </div>
 {% endblock %}

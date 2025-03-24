@@ -142,3 +142,10 @@ def service_neighbour_add(request, serv_pk: int):
     neighbour = Neighbour.objects.get(pk=request.user.pk)
     service.neighbours.add(neighbour)
     return redirect("lend_assist:service-list")
+
+
+def request_neighbour_add(request_data, req_pk: int):
+    request = Request.objects.get(pk=req_pk)
+    neighbour = Neighbour.objects.get(pk=request_data.user.pk)
+    request.neighbours.add(neighbour)
+    return redirect("lend_assist:request-list")

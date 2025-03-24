@@ -19,6 +19,7 @@ from .views import (
     RequestDeleteView,
     service_neighbour_add,
     create_service,
+    request_neighbour_add,
 )
 
 
@@ -102,6 +103,10 @@ urlpatterns = [
         "requests/<int:pk>/delete/",
         RequestDeleteView.as_view(),
         name="request-delete",
+    ),
+    path(
+        "requests/<int:req_pk>/neighobour_add/",
+        request_neighbour_add, name="request-neighbour-add"
     ),
 ]
 

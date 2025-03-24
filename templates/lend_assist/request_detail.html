@@ -2,23 +2,26 @@
 
 {% block content %}
   <h1>
-    Request category: {{ request.category }}
+    Request detail
   </h1>
 
   <p><strong>Name:</strong> {{ request.name }}</p>
   <p><strong>Description:</strong> {{ request.description }}</p>
   <p><strong>Date of creation:</strong> {{ request.date }}</p>
-  <p><strong>Reward:</strong> {{ request.reward }}</p>
+  <p>
+      <a href="{% url 'lend_assist:request-neighbour-add' req_pk=request.id %}">
+        Join this request
+      </a>
+  </p>
 
   <div class="ml-3">
-    <h4>Neighbours requested this service</h4>
+    <h4>Neighbours joined this request</h4>
 
-    {% for user in service.users.all %}
+    {% for neighbour in request.neighbours.all %}
         <hr>
-        <p><strong>Username:</strong> {{ user.username }}</p>
-        <p><strong>Address:</strong> {{ user.address }}</p>
-        <p><strong>phone:</strong> {{ user.phone }}</p>
-        <p class="text-muted"><strong>!!!!Price!!!!:</strong> {{request.reward}}</p>
+        <p><strong>Username:</strong> {{ neighbour.username }}</p>
+        <p><strong>Address:</strong> {{ neighbour.address }}</p>
+        <p><strong>phone:</strong> {{ neighbour.phone }}</p>
 
     {% empty %}
       <p>Only one neighbour requested!</p>
