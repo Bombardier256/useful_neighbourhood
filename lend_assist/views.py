@@ -12,6 +12,7 @@ from lend_assist.forms import (
     ServiceUpdateForm,
     RequestUpdateForm,
     ServiceSearchForm,
+    RequestSearchForm,
 )
 from lend_assist.models import Service, Neighbour, Request
 
@@ -134,7 +135,22 @@ class RequestListView(LoginRequiredMixin, generic.ListView):
     model = Request
     template_name = "lend_assist/request_list.html"
     paginate_by = 5
+    queryset = Request.objects.all()
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(RequestListView, self).get_context_data(**kwargs)
+        title = self.request.GET.get("title", "")
+        context["search_form"] = RequestSearchForm(
+            initial={"title": title}
+        )
+        return context
+
+    def get_queryset(self):
+        title = self.request.GET.get("title")
+        if title:
+            return self.queryset.filter(name__contains=title)
+
+        return self.queryset
 
 class RequestDetailView(LoginRequiredMixin, generic.DetailView):
     model = Request
