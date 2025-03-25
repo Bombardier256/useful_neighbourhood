@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
   <h1>
@@ -8,12 +9,17 @@
     </a>
   </h1>
 
+  <form action="" method="get" class="form-inline">
+    {{ search_form|crispy }}
+    <input class="btn btn-secondary" type="submit" value="🔍" >
+  </form>
+
   {% if service_list %}
     <table class="table">
       <tr>
         <th>ID</th>
-        <th>Service Name</th>
-        <th>Amount of providers</th>
+        <th>Title</th>
+        <th>Providers</th>
       </tr>
 
       {% for service in service_list %}
@@ -25,7 +31,7 @@
               <a href="{{ service.get_absolute_url }}">{{ service.name }}</a>
           </td>
           <td>
-              {{ service.neighbours }}
+              {{ service.neighbours.count }}
           </td>
       {% endfor %}
     </table>

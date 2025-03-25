@@ -11,6 +11,7 @@ from lend_assist.forms import (
     NeighbourUpdateForm,
     ServiceUpdateForm,
     RequestUpdateForm,
+    ServiceSearchForm,
 )
 from lend_assist.models import Service, Neighbour, Request
 
@@ -71,7 +72,24 @@ class NeighbourDeleteView(LoginRequiredMixin, generic.DeleteView):
 class ServiceListView(LoginRequiredMixin, generic.ListView):
     model = Service
     template_name = "lend_assist/service_list.html"
-    paginate_by = 10
+    paginate_by = 5
+    queryset = Service.objects.all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ServiceListView, self).get_context_data(**kwargs)
+        title = self.request.GET.get("title", "")
+        context["search_form"] = ServiceSearchForm(
+            initial={"title": title}
+        )
+        return context
+
+    def get_queryset(self):
+        title = self.request.GET.get("title")
+        if title:
+            return self.queryset.filter(name__contains=title)
+
+        return self.queryset
+
 
 
 class ServiceDetailView(LoginRequiredMixin, generic.DetailView):
@@ -115,7 +133,7 @@ class ServiceDeleteView(LoginRequiredMixin, generic.DeleteView):
 class RequestListView(LoginRequiredMixin, generic.ListView):
     model = Request
     template_name = "lend_assist/request_list.html"
-    paginate_by = 10
+    paginate_by = 5
 
 
 class RequestDetailView(LoginRequiredMixin, generic.DetailView):

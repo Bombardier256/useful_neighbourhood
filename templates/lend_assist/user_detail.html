@@ -39,14 +39,14 @@
         {% for service in neighbour.services.all %}
           <tr>
             <th>{{ service.id }}</th>
-            <th><strong>Name:</strong> {{ service.name }}</th>
+            <th>{{ service.name }}</th>
             <th>
               {% if user.username == service.author_username %}
               <a href="{% url 'lend_assist:service-update' pk=service.id %}" class="btn btn-primary">
-                Update service
+                Update service as author
               </a>
               <a href="{% url 'lend_assist:service-delete' pk=service.id %}" class="btn btn-primary">
-                Delete service
+                Delete service as author
               </a>
               {% endif %}
             </th>

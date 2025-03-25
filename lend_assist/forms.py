@@ -63,3 +63,21 @@ class RequestUpdateForm(forms.ModelForm):
     class Meta:
         model = Request
         exclude = ("neighbours", "author_username")
+
+
+class ServiceSearchForm(forms.Form):
+    title = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by title"}),
+    )
+
+
+class RequestSearchForm(forms.Form):
+    title = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by title"}),
+    )
