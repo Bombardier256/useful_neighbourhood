@@ -8,9 +8,6 @@ from lend_assist.forms import (
     NeighbourCreateForm,
     ServiceCreateForm,
     RequestCreateForm,
-    NeighbourUpdateForm,
-    ServiceUpdateForm,
-    RequestUpdateForm,
     SearchForm,
 )
 from lend_assist.models import Service, Neighbour, Request
@@ -58,7 +55,7 @@ class NeighbourCreateView(generic.CreateView):
 
 class NeighbourUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Neighbour
-    form_class = NeighbourUpdateForm
+    form_class = NeighbourCreateForm
     success_url = reverse_lazy("lend_assist:service-list")
     template_name = "lend_assist/user_form.html"
 
@@ -121,7 +118,7 @@ def create_service(request):
 
 class ServiceUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Service
-    form_class = ServiceUpdateForm
+    form_class = ServiceCreateForm
     success_url = reverse_lazy("lend_assist:service-list")
 
 
@@ -180,7 +177,7 @@ def create_request(request_data):
 
 class RequestUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Request
-    form_class = RequestUpdateForm
+    form_class = RequestCreateForm
     success_url = reverse_lazy("lend_assist:request-list")
 
 

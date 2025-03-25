@@ -50,12 +50,6 @@ class NeighbourCreateForm(forms.ModelForm):
         return user
 
 
-class NeighbourUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Neighbour
-        fields = ("username", "first_name", "last_name", "phone", "address", "email")
-
-
 class ServiceCreateForm(forms.ModelForm):
     name = forms.CharField(max_length=100, validators=[validate_capitalize])
     class Meta:
@@ -63,21 +57,7 @@ class ServiceCreateForm(forms.ModelForm):
         exclude = ("neighbours", "author_username")
 
 
-class ServiceUpdateForm(forms.ModelForm):
-    name = forms.CharField(max_length=100, validators=[validate_capitalize])
-    class Meta:
-        model = Service
-        exclude = ("neighbours", "author_username")
-
-
 class RequestCreateForm(forms.ModelForm):
-    name = forms.CharField(max_length=100, validators=[validate_capitalize])
-    class Meta:
-        model = Request
-        exclude = ("neighbours", "author_username")
-
-
-class RequestUpdateForm(forms.ModelForm):
     name = forms.CharField(max_length=100, validators=[validate_capitalize])
     class Meta:
         model = Request
