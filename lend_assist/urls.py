@@ -1,9 +1,7 @@
 from django.urls import path
 
-from .models import Neighbour
 from .views import (
     index,
-    NeighbourListView,
     ServiceListView,
     RequestListView,
     NeighbourDetailView,
@@ -28,11 +26,6 @@ from .views import (
 
 urlpatterns = [
     path("", index, name="index"),
-    path(
-        "users/",
-        NeighbourListView.as_view(),
-        name="user-list",
-    ),
     path(
         "users/<int:pk>/",
         NeighbourDetailView.as_view(),

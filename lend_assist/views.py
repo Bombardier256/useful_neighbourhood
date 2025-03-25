@@ -33,13 +33,6 @@ def index(request):
     return render(request, "lend_assist/index.html", context=context)
 
 
-class NeighbourListView(generic.ListView):
-    model = Neighbour
-    context_object_name = "user_list"
-    template_name = "lend_assist/user_list.html"
-    paginate_by = 10
-
-
 class NeighbourDetailView(LoginRequiredMixin, generic.DetailView):
     model = Neighbour
     success_url = reverse_lazy("lend_assist:user_list")
@@ -97,6 +90,7 @@ class ServiceDetailView(LoginRequiredMixin, generic.DetailView):
     model = Service
 
 
+@login_required
 def create_service(request):
     neighbour = Neighbour.objects.get(pk=request.user.pk)
 
@@ -151,10 +145,11 @@ class RequestListView(LoginRequiredMixin, generic.ListView):
 
         return self.queryset
 
+
 class RequestDetailView(LoginRequiredMixin, generic.DetailView):
     model = Request
 
-
+@login_required
 def create_request(request_data):
     neighbour = Neighbour.objects.get(pk=request_data.user.pk)
 
@@ -187,27 +182,28 @@ class RequestDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Request
     success_url = reverse_lazy("lend_assist:request-list")
 
-
+@login_required
 def service_neighbour_add(request, serv_pk: int):
     service = Service.objects.get(pk=serv_pk)
     neighbour = Neighbour.objects.get(pk=request.user.pk)
     service.neighbours.add(neighbour)
     return redirect("lend_assist:service-list")
 
-
+@login_required
 def service_neighbour_remove(request, serv_pk: int):
     service = Service.objects.get(pk=serv_pk)
     neighbour = Neighbour.objects.get(pk=request.user.pk)
     service.neighbours.remove(neighbour)
     return redirect("lend_assist:service-list")
 
-
+@login_required
 def request_neighbour_add(request_data, req_pk: int):
     request = Request.objects.get(pk=req_pk)
     neighbour = Neighbour.objects.get(pk=request_data.user.pk)
     request.neighbours.add(neighbour)
     return redirect("lend_assist:request-list")
 
+@login_required
 def request_neighbour_remove(request_data, req_pk: int):
     request = Request.objects.get(pk=req_pk)
     neighbour = Neighbour.objects.get(pk=request_data.user.pk)
