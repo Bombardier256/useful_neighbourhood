@@ -9,10 +9,21 @@ from lend_assist.models import (
     Request,
 )
 
+from django.core.validators import RegexValidator
+from django.db import models
+
+phone_validator = RegexValidator(
+    regex=r'^\+?1?\d{12,12}$',
+    message="Phone number must be entered in the format: '+380501234567'. Only 12 digits are allowed."
+)
+
+
 
 class NeighbourCreateForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
     confirm_password = forms.CharField(widget=forms.PasswordInput())
+    phone = forms.CharField(validators=[phone_validator])
+
     class Meta:
         model = Neighbour
         fields = ("username", "password", "first_name", "last_name", "phone", "address", "email",)
