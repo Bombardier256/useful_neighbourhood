@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
@@ -64,15 +63,7 @@ class ServiceCreateForm(forms.ModelForm):
         exclude = ("neighbours", "author_username")
 
 
-class RequestCreateForm(forms.ModelForm):
-    name = forms.CharField(
-        max_length=100,
-        validators=[validate_capitalize],
-        widget=forms.TextInput(
-            attrs={"placeholder": "Name it starting from capital letter"}
-        ),
-    )
-
+class RequestCreateForm(ServiceCreateForm):
     class Meta:
         model = Request
         exclude = ("neighbours", "author_username")
