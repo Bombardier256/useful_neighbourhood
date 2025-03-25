@@ -64,6 +64,7 @@ class ServiceCreateForm(forms.ModelForm):
 
 
 class ServiceUpdateForm(forms.ModelForm):
+    name = forms.CharField(max_length=100, validators=[validate_capitalize])
     class Meta:
         model = Service
         exclude = ("neighbours", "author_username")
@@ -77,6 +78,7 @@ class RequestCreateForm(forms.ModelForm):
 
 
 class RequestUpdateForm(forms.ModelForm):
+    name = forms.CharField(max_length=100, validators=[validate_capitalize])
     class Meta:
         model = Request
         exclude = ("neighbours", "author_username")
