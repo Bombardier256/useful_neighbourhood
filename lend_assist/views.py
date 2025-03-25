@@ -11,8 +11,7 @@ from lend_assist.forms import (
     NeighbourUpdateForm,
     ServiceUpdateForm,
     RequestUpdateForm,
-    ServiceSearchForm,
-    RequestSearchForm,
+    SearchForm,
 )
 from lend_assist.models import Service, Neighbour, Request
 
@@ -79,7 +78,7 @@ class ServiceListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ServiceListView, self).get_context_data(**kwargs)
         title = self.request.GET.get("title", "")
-        context["search_form"] = ServiceSearchForm(
+        context["search_form"] = SearchForm(
             initial={"title": title}
         )
         return context
@@ -140,7 +139,7 @@ class RequestListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(RequestListView, self).get_context_data(**kwargs)
         title = self.request.GET.get("title", "")
-        context["search_form"] = RequestSearchForm(
+        context["search_form"] = SearchForm(
             initial={"title": title}
         )
         return context

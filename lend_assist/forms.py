@@ -58,7 +58,6 @@ class NeighbourUpdateForm(forms.ModelForm):
 
 class ServiceCreateForm(forms.ModelForm):
     name = forms.CharField(max_length=100, validators=[validate_capitalize])
-
     class Meta:
         model = Service
         exclude = ("neighbours", "author_username")
@@ -71,6 +70,7 @@ class ServiceUpdateForm(forms.ModelForm):
 
 
 class RequestCreateForm(forms.ModelForm):
+    name = forms.CharField(max_length=100, validators=[validate_capitalize])
     class Meta:
         model = Request
         exclude = ("neighbours", "author_username")
@@ -82,16 +82,7 @@ class RequestUpdateForm(forms.ModelForm):
         exclude = ("neighbours", "author_username")
 
 
-class ServiceSearchForm(forms.Form):
-    title = forms.CharField(
-        max_length=255,
-        required=False,
-        label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by title"}),
-    )
-
-
-class RequestSearchForm(forms.Form):
+class SearchForm(forms.Form):
     title = forms.CharField(
         max_length=255,
         required=False,
