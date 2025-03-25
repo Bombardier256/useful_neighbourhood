@@ -12,17 +12,20 @@ from lend_assist.models import (
 from django.core.validators import RegexValidator
 from django.db import models
 
-phone_validator = RegexValidator(
+
+validate_phone = RegexValidator(
     regex=r'^\+?1?\d{12,12}$',
     message="Phone number must be entered in the format: '+380501234567'. Only 12 digits are allowed."
 )
 
-
+def validate_capitalize(word: str) -> None:
+    if not word[0].isupper():
+        raise ValidationError("Name must start with a capital letter.")
 
 class NeighbourCreateForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
     confirm_password = forms.CharField(widget=forms.PasswordInput())
-    phone = forms.CharField(validators=[phone_validator])
+    phone = forms.CharField(validators=[validate_phone])
     email = forms.EmailField()
 
     class Meta:
@@ -54,6 +57,8 @@ class NeighbourUpdateForm(forms.ModelForm):
 
 
 class ServiceCreateForm(forms.ModelForm):
+    name = forms.CharField(max_length=100, validators=[validate_capitalize])
+
     class Meta:
         model = Service
         exclude = ("neighbours", "author_username")
