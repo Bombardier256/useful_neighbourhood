@@ -23,6 +23,7 @@ class NeighbourCreateForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
     confirm_password = forms.CharField(widget=forms.PasswordInput())
     phone = forms.CharField(validators=[phone_validator])
+    email = forms.EmailField()
 
     class Meta:
         model = Neighbour
