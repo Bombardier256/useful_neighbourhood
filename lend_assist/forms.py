@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 
 from lend_assist.models import (
     Neighbour,
@@ -9,23 +10,22 @@ from lend_assist.models import (
     Request,
 )
 
-from django.core.validators import RegexValidator
-from django.db import models
-
 
 validate_phone = RegexValidator(
     regex=r'^\+?1?\d{12,12}$',
     message="Phone number must be entered in the format: '+380501234567'. Only 12 digits are allowed."
 )
 
+
 def validate_capitalize(word: str) -> None:
     if not word[0].isupper():
         raise ValidationError("Name must start with a capital letter.")
 
+
 class NeighbourCreateForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
     confirm_password = forms.CharField(widget=forms.PasswordInput())
-    phone = forms.CharField(validators=[validate_phone])
+    phone = forms.CharField(validators=[validate_phone], initial="+380")
     email = forms.EmailField()
 
     class Meta:
@@ -51,14 +51,28 @@ class NeighbourCreateForm(forms.ModelForm):
 
 
 class ServiceCreateForm(forms.ModelForm):
-    name = forms.CharField(max_length=100, validators=[validate_capitalize])
+    name = forms.CharField(
+        max_length=100,
+        validators=[validate_capitalize],
+        widget=forms.TextInput(
+            attrs={"placeholder": "Name it starting from capital letter"}
+        ),
+    )
+
     class Meta:
         model = Service
         exclude = ("neighbours", "author_username")
 
 
 class RequestCreateForm(forms.ModelForm):
-    name = forms.CharField(max_length=100, validators=[validate_capitalize])
+    name = forms.CharField(
+        max_length=100,
+        validators=[validate_capitalize],
+        widget=forms.TextInput(
+            attrs={"placeholder": "Name it starting from capital letter"}
+        ),
+    )
+
     class Meta:
         model = Request
         exclude = ("neighbours", "author_username")

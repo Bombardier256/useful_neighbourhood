@@ -109,7 +109,6 @@ def create_service(request):
             service.save()
 
             return redirect("lend_assist:service-list")
-
     else:
         form = ServiceCreateForm()
 
@@ -168,7 +167,6 @@ def create_request(request_data):
             request.save()
 
             return redirect("lend_assist:request-list")
-
     else:
         form = ServiceCreateForm()
 
