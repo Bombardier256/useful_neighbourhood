@@ -22,6 +22,7 @@ from .views import (
     request_neighbour_add,
     request_neighbour_remove,
     create_request,
+    RentalListView,
 )
 
 
@@ -56,6 +57,11 @@ urlpatterns = [
         "services/",
         ServiceListView.as_view(),
         name="service-list",
+    ),
+    path(
+        "rentals/",
+        RentalListView.as_view(),
+        name="rental-list",
     ),
     path(
         "services/<int:pk>/",

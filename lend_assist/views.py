@@ -70,7 +70,7 @@ class ServiceListView(LoginRequiredMixin, generic.ListView):
     model = Service
     template_name = "lend_assist/service_list.html"
     paginate_by = 5
-    queryset = Service.objects.all()
+    queryset = Service.objects.filter(is_lending=False)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ServiceListView, self).get_context_data(**kwargs)
@@ -87,6 +87,10 @@ class ServiceListView(LoginRequiredMixin, generic.ListView):
 
         return self.queryset
 
+
+class RentalListView(ServiceListView):
+    queryset = Service.objects.filter(is_lending=True)
+    template_name = "lend_assist/rental_list.html"
 
 
 class ServiceDetailView(LoginRequiredMixin, generic.DetailView):
