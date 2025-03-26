@@ -63,7 +63,7 @@ class ServiceListView(LoginRequiredMixin, generic.ListView):
     model = Service
     template_name = "lend_assist/service_list.html"
     paginate_by = 5
-    queryset = Service.objects.filter(is_lending=False)
+    queryset = Service.objects.filter(is_lending=False).prefetch_related("neighbours")
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ServiceListView, self).get_context_data(**kwargs)
@@ -82,7 +82,7 @@ class ServiceListView(LoginRequiredMixin, generic.ListView):
 
 
 class RentalListView(ServiceListView):
-    queryset = Service.objects.filter(is_lending=True)
+    queryset = Service.objects.filter(is_lending=True).prefetch_related("neighbours")
     template_name = "lend_assist/rental_list.html"
     context_object_name = "rental_list"
 
@@ -129,7 +129,7 @@ class RequestListView(LoginRequiredMixin, generic.ListView):
     model = Request
     template_name = "lend_assist/request_list.html"
     paginate_by = 5
-    queryset = Request.objects.all()
+    queryset = Request.objects.all().prefetch_related("neighbours")
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(RequestListView, self).get_context_data(**kwargs)

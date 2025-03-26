@@ -14,7 +14,7 @@
     <input class="btn btn-secondary" type="submit" value="🔍" >
   </form>
 
-  {% if service_list %}
+  {% if rental_list %}
     <table class="table">
       <tr>
         <th>ID</th>
@@ -22,7 +22,7 @@
         <th>Providers</th>
       </tr>
 
-      {% for service in service_list %}
+      {% for service in rental_list %}
         <tr>
           <td>
               {{ service.id }}
