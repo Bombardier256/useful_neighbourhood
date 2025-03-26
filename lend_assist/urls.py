@@ -78,11 +78,13 @@ urlpatterns = [
     ),
     path(
         "services/<int:serv_pk>/neighobour_add/",
-        service_neighbour_add, name="service-neighbour-add"
+        service_neighbour_add,
+        name="service-neighbour-add"
     ),
     path(
         "services/<int:serv_pk>/neighobour_remove/",
-        service_neighbour_remove, name="service-neighbour-remove"
+        service_neighbour_remove,
+        name="service-neighbour-remove"
     ),
     path(
         "requests/",

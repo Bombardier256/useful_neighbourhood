@@ -84,6 +84,7 @@ class ServiceListView(LoginRequiredMixin, generic.ListView):
 class RentalListView(ServiceListView):
     queryset = Service.objects.filter(is_lending=True)
     template_name = "lend_assist/rental_list.html"
+    context_object_name = "rental_list"
 
 
 class ServiceDetailView(LoginRequiredMixin, generic.DetailView):
