@@ -149,6 +149,7 @@ class RequestListView(LoginRequiredMixin, generic.ListView):
 
 class RequestDetailView(LoginRequiredMixin, generic.DetailView):
     model = Request
+    context_object_name = "request_form"
 
 @login_required
 def create_request(request_data):
@@ -177,11 +178,13 @@ class RequestUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Request
     form_class = RequestCreateForm
     success_url = reverse_lazy("lend_assist:request-list")
+    context_object_name = "request_form"
 
 
 class RequestDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Request
     success_url = reverse_lazy("lend_assist:request-list")
+    context_object_name = "request_form"
 
 @login_required
 def service_neighbour_add(request, serv_pk: int):

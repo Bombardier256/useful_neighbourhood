@@ -29,7 +29,7 @@ class NeighbourCreateForm(forms.ModelForm):
 
     class Meta:
         model = Neighbour
-        fields = ("username", "password", "first_name", "last_name", "phone", "address", "email",)
+        fields = ("username", "first_name", "last_name", "phone", "address", "email", "password",)
 
     def clean(self):
         cleaned_data = super().clean()

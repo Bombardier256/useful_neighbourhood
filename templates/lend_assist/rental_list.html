@@ -5,16 +5,19 @@
 
 {% block content %}
   <h1>
-    Rental services in your neighbourhood
-    <a href="{% url 'lend_assist:service-create' %}" class="btn btn-primary">
-        Create rental service
-    </a>
+    Rental services
   </h1>
+  <br>
 
-  <form action="" method="get" class="form-inline">
-    {{ search_form|crispy }}
-    <input class="btn btn-secondary" type="submit" value="🔍" >
-  </form>
+  <div class="form-inline">
+    <form action="" method="get" class="form-inline">
+      {{ search_form|crispy }}
+      <input class="btn btn-secondary" type="submit" value="🔍" >
+    </form>
+    <a href="{% url 'lend_assist:service-create' %}" class="btn btn-primary">
+          Create rental service
+    </a>
+  </div>
 
   {% if rental_list %}
     <table class="table">

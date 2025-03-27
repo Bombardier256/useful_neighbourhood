@@ -5,31 +5,31 @@
 {% block content %}
   <h1>
     Request detail
-    {% if user.username == request.author_username %}
-      <a href="{% url 'lend_assist:request-update' pk=request.id %}" class="btn btn-primary">
+    {% if user.username == request_form.author_username %}
+      <a href="{% url 'lend_assist:request-update' pk=request_form.id %}" class="btn btn-primary">
           Update request
       </a>
-      <a href="{% url 'lend_assist:request-delete' pk=request.id %}" class="btn btn-primary">
+      <a href="{% url 'lend_assist:request-delete' pk=request_form.id %}" class="btn btn-primary">
           Delete request
       </a>
     {% endif %}
   </h1>
 
-  <p><strong>Title:</strong> {{ request.name }}</p>
-  <p><strong>Description:</strong> {{ request.description }}</p>
-  <p><strong>Author:</strong> {{ request.author_username }}</p>
-  <p><strong>Date of creation:</strong> {{ request.date }}</p>
+  <p><strong>Title:</strong> {{ request_form.name }}</p>
+  <p><strong>Description:</strong> {{ request_form.description }}</p>
+  <p><strong>Author:</strong> {{ request_form.author_username }}</p>
+  <p><strong>Date of creation:</strong> {{ request_form.date }}</p>
 
   <ul>
-    {% if user in request.neighbours.all %}
+    {% if user in request_form.neighbours.all %}
       <li>
-      <a href="{% url 'lend_assist:request-neighbour-remove' req_pk=request.id %}" class="btn btn-primary">
+      <a href="{% url 'lend_assist:request-neighbour-remove' req_pk=request_form.id %}" class="btn btn-primary">
         Remove me from this request
       </a>
       </li>
     {% else %}
       <li>
-        <a href="{% url 'lend_assist:request-neighbour-add' req_pk=request.id %}" class="btn btn-primary">
+        <a href="{% url 'lend_assist:request-neighbour-add' req_pk=request_form.id %}" class="btn btn-primary">
           Join this request
         </a>
       </li>
@@ -39,7 +39,7 @@
   <div class="ml-3">
     <h4>List of neighbours who joined this request</h4>
 
-    {% for neighbour in request.neighbours.all %}
+    {% for neighbour in request_form.neighbours.all %}
         <hr>
         <p><strong>Username:</strong> {{ neighbour.username }}</p>
         <p><strong>Address:</strong> {{ neighbour.address }}</p>
