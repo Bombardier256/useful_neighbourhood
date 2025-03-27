@@ -1,5 +1,7 @@
-{% extends "base.html" %}
+{% extends "layouts/base-content.html" %}
 {% load crispy_forms_filters %}
+
+{% block title %} Services {% endblock title %}
 
 {% block content %}
   <h1>
@@ -45,4 +47,5 @@
         Create request
     </a>
   </p>
+
 {% endblock %}

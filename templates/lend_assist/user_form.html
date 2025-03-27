@@ -1,5 +1,7 @@
-{% extends "base.html" %}
+{% extends "layouts/base-content.html" %}
 {% load crispy_forms_filters %}
+
+{% block title %} User form {% endblock title %}
 
 {% block content %}
   <h1>{{ object|yesno:"Update,Create" }} Account</h1>

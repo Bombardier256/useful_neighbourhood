@@ -30,7 +30,7 @@ def index(request):
         "num_visits": num_visits + 1,
     }
 
-    return render(request, "lend_assist/index2.html", context=context)
+    return render(request, "lend_assist/index.html", context=context)
 
 
 class NeighbourDetailView(LoginRequiredMixin, generic.DetailView):
