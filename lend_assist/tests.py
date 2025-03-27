@@ -10,6 +10,8 @@ from lend_assist.models import (
     Service,
     Request,
 )
+
+
 class ModelTests(TestCase):
     def setUp(self):
         self.category = Category.objects.create(name="test")
