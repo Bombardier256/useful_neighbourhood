@@ -1,0 +1,15 @@
+{% extends "layouts/base-content.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %} Service form {% endblock title %}
+
+{% block content %}
+  <h1>{{ object|yesno:"Update,Create" }} new service</h1>
+  <form action="" method="post" novalidate>
+    {% csrf_token %}
+    {{ form|crispy }}
+
+    <input type="submit" value="Submit" class="btn btn-primary">
+
+  </form>
+{% endblock %}
