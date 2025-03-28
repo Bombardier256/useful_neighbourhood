@@ -40,7 +40,7 @@ User can manage all his Services and Requests at his User account page.
 
 Known bugs.
 
-Only author of Service or Request can delete it. But it is guaranteed by the HTML only.
+Only the author of Service or Request can delete it. But it is guaranteed by the HTML only.
 So any registered user can simply open any detail page of Service or Request add to 
 URL update / delete and this way update or delete respective Service, Request and 
 even Neighbour from DB.
