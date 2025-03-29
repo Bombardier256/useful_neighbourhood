@@ -53,23 +53,23 @@
               <div class="p-3 text-center">
                 <h1 class="text-gradient text-primary"><span id="state1" countTo={{ num_users }}>0</span>+</h1>
                 <h5 class="mt-3">Neighbours</h5>
-                <p class="text-sm">Join your community and enjoy your useful neighbourhood</p>
+                <p class="text-sm">Welcome to our community and enjoy your useful neighbourhood</p>
               </div>
               <hr class="vertical dark">
             </div>
             <div class="col-md-4 position-relative">
               <div class="p-3 text-center">
                 <h1 class="text-gradient text-primary"> <span id="state2" countTo={{ num_services }}>0</span>+</h1>
-                <h5 class="mt-3">Services</h5>
-                <p class="text-sm">Rent, assist, help, learn, advice, teach, train, have fun and many more</p>
+                <h5 class="mt-3"><a href="{% url 'lend_assist:service-list' %}">Services</a></h5>
+                <p class="text-sm"><a href="{% url 'lend_assist:service-list' %}">Rent, assist, help, learn, advice, teach, train, have fun and many more</a></p>
               </div>
               <hr class="vertical dark">
             </div>
             <div class="col-md-4">
               <div class="p-3 text-center">
                 <h1 class="text-gradient text-primary" id="state3" countTo={{ num_requests }}>0</h1>
-                <h5 class="mt-3">Requests</h5>
-                <p class="text-sm">Did not find suitable service? Make request and enjoy your useful neighbourhood</p>
+                <h5 class="mt-3"><a href="{% url 'lend_assist:request-list' %}">Requests</a></h5>
+                <p class="text-sm"><a href="{% url 'lend_assist:request-list' %}">Did not find suitable service? Make request and enjoy your useful neighbourhood</a></p>
               </div>
             </div>
           </div>
@@ -79,14 +79,6 @@
   </section>
 
   <!-- -------   END PRE-FOOTER 2 - simple social line w/ title & 3 buttons    -------- -->
-
-
-
-
-
-
-
-
 
 {% endblock content %}
 
