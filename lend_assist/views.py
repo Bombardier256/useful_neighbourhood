@@ -9,7 +9,6 @@ from lend_assist.forms import (
     ServiceCreateForm,
     RequestCreateForm,
     SearchForm,
-    ServiceAddNeighbourForm,
 )
 from lend_assist.models import Service, Neighbour, Request
 

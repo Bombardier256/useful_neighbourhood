@@ -76,8 +76,3 @@ class SearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "Search by title"}),
     )
-
-class ServiceAddNeighbourForm(forms.ModelForm):
-    class Meta:
-        model = Service
-        fields = []
