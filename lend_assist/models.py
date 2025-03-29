@@ -28,7 +28,8 @@ class Neighbour(AbstractUser):
 
     def get_absolute_url(self):
         return reverse(
-            "lend_assist:user-detail", kwargs={"pk": self.pk}
+            "lend_assist:user-detail",
+            kwargs={"pk": self.pk}
         )
 
 
@@ -58,7 +59,8 @@ class Service(models.Model):
 
     def get_absolute_url(self):
         return reverse(
-            "lend_assist:service-detail", kwargs={"pk": self.pk}
+            "lend_assist:service-detail",
+            kwargs={"pk": self.pk}
         )
 
 
@@ -86,5 +88,6 @@ class Request(models.Model):
 
     def get_absolute_url(self):
         return reverse(
-            "lend_assist:request-detail", kwargs={"pk": self.pk}
+            "lend_assist:request-detail",
+            kwargs={"pk": self.pk}
         )

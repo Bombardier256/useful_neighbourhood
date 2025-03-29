@@ -9,6 +9,7 @@ from lend_assist.forms import (
     ServiceCreateForm,
     RequestCreateForm,
     SearchForm,
+    ServiceAddNeighbourForm,
 )
 from lend_assist.models import Service, Neighbour, Request
 
@@ -125,6 +126,22 @@ class ServiceDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("lend_assist:service-list")
 
 
+class ServiceAddNeighbourView(LoginRequiredMixin, generic.View):
+    @staticmethod
+    def get(request, serv_pk):
+        service = Service.objects.get(pk=serv_pk)
+        service.neighbours.add(request.user)
+        return redirect("lend_assist:service-detail", pk=serv_pk)
+
+
+class ServiceRemoveNeighbourView(LoginRequiredMixin, generic.View):
+    @staticmethod
+    def get(request, serv_pk):
+        service = Service.objects.get(pk=serv_pk)
+        service.neighbours.remove(request.user)
+        return redirect("lend_assist:service-detail", pk=serv_pk)
+
+
 class RequestListView(LoginRequiredMixin, generic.ListView):
     model = Request
     template_name = "lend_assist/request_list.html"
@@ -187,29 +204,13 @@ class RequestDeleteView(LoginRequiredMixin, generic.DeleteView):
     context_object_name = "request_form"
 
 @login_required
-def service_neighbour_add(request, serv_pk: int):
-    service = Service.objects.get(pk=serv_pk)
-    neighbour = Neighbour.objects.get(pk=request.user.pk)
-    service.neighbours.add(neighbour)
-    return redirect("lend_assist:service-list")
-
-@login_required
-def service_neighbour_remove(request, serv_pk: int):
-    service = Service.objects.get(pk=serv_pk)
-    neighbour = Neighbour.objects.get(pk=request.user.pk)
-    service.neighbours.remove(neighbour)
-    return redirect("lend_assist:service-list")
-
-@login_required
 def request_neighbour_add(request_data, req_pk: int):
     request = Request.objects.get(pk=req_pk)
-    neighbour = Neighbour.objects.get(pk=request_data.user.pk)
-    request.neighbours.add(neighbour)
+    request.neighbours.add(request_data.user)
     return redirect("lend_assist:request-list")
 
 @login_required
 def request_neighbour_remove(request_data, req_pk: int):
     request = Request.objects.get(pk=req_pk)
-    neighbour = Neighbour.objects.get(pk=request_data.user.pk)
-    request.neighbours.remove(neighbour)
+    request.neighbours.remove(request_data.user)
     return redirect("lend_assist:request-list")

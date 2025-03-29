@@ -14,13 +14,13 @@ from .views import (
     NeighbourDeleteView,
     ServiceDeleteView,
     RequestDeleteView,
-    service_neighbour_add,
-    service_neighbour_remove,
     create_service,
     request_neighbour_add,
     request_neighbour_remove,
     create_request,
     RentalListView,
+    ServiceAddNeighbourView,
+    ServiceRemoveNeighbourView,
 )
 
 
@@ -78,12 +78,12 @@ urlpatterns = [
     ),
     path(
         "services/<int:serv_pk>/neighobour_add/",
-        service_neighbour_add,
+        ServiceAddNeighbourView.as_view(),
         name="service-neighbour-add"
     ),
     path(
         "services/<int:serv_pk>/neighobour_remove/",
-        service_neighbour_remove,
+        ServiceRemoveNeighbourView.as_view(),
         name="service-neighbour-remove"
     ),
     path(
