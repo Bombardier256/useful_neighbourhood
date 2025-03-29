@@ -80,6 +80,9 @@ Coded by www.creative-tim.com
         <div class="col-lg-7 text-center mx-auto">
 
           {% block content %}{% endblock content %}
+          {% block pagination %}
+                {% include "includes/pagination.html" %}
+          {% endblock %}
 
         </div>
       </div>
