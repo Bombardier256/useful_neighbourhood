@@ -203,14 +203,18 @@ class RequestDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("lend_assist:request-list")
     context_object_name = "request_form"
 
-@login_required
-def request_neighbour_add(request_data, req_pk: int):
-    request = Request.objects.get(pk=req_pk)
-    request.neighbours.add(request_data.user)
-    return redirect("lend_assist:request-list")
 
-@login_required
-def request_neighbour_remove(request_data, req_pk: int):
-    request = Request.objects.get(pk=req_pk)
-    request.neighbours.remove(request_data.user)
-    return redirect("lend_assist:request-list")
+class RequestAddNeighbourView(LoginRequiredMixin, generic.View):
+    @staticmethod
+    def get(request, req_pk):
+        request_serv = Request.objects.get(pk=req_pk)
+        request_serv.neighbours.add(request.user)
+        return redirect("lend_assist:request-detail", pk=req_pk)
+
+
+class RequestRemoveNeighbourView(LoginRequiredMixin, generic.View):
+    @staticmethod
+    def get(request, req_pk):
+        request_serv = Request.objects.get(pk=req_pk)
+        request_serv.neighbours.remove(request.user)
+        return redirect("lend_assist:request-detail", pk=req_pk)

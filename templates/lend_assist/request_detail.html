@@ -21,7 +21,6 @@
   <p><strong>Date of creation:</strong> {{ request_form.date }}</p>
 
   {% if user in request_form.neighbours.all %}
-
     <a href="{% url 'lend_assist:request-neighbour-remove' req_pk=request_form.id %}" class="btn btn-primary">
       Remove me from this request
     </a>
