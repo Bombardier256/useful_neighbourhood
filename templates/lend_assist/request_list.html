@@ -1,0 +1,52 @@
+{% extends "layouts/base-content.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %} Requests {% endblock title %}
+
+{% block content %}
+  <h1>
+    List of requests
+  </h1>
+  <br>
+
+  <div class="form-inline">
+    <form action="" method="get" class="form-inline">
+      {{ search_form|crispy }}
+      <input class="btn btn-secondary" type="submit" value="🔍" >
+    </form>
+  <a href="{% url 'lend_assist:request-create' %}" class="btn btn-primary">
+          New Request
+      </a>
+  </div>
+
+  {% if request_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Interested</th>
+        <th>Created on the</th>
+      </tr>
+
+      {% for request in request_list %}
+        <tr>
+          <td>
+              {{ request.id }}
+          </td>
+          <td>
+              <a href="{{ request.get_absolute_url }}">{{ request.name }}</a>
+          </td>
+          <td>
+              {{ request.neighbours.count }}
+          </td>
+          <td>
+              {{ request.date }}
+          </td>
+
+      {% endfor %}
+    </table>
+
+  {% else %}
+      <p>There are no requests.</p>
+  {% endif %}
+{% endblock %}

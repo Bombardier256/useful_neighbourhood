@@ -1,0 +1,47 @@
+{% extends "layouts/base-content.html" %}
+
+{% block title %} Service detail {% endblock title %}
+
+{% block content %}
+  <h1>
+    Service detail
+    {% if user.username == service.author_username %}
+      <a href="{% url 'lend_assist:service-update' pk=service.id %}" class="btn btn-primary">
+          Update service
+      </a>
+      <a href="{% url 'lend_assist:service-delete' pk=service.id %}" class="btn btn-primary">
+          Delete service
+      </a>
+    {% endif %}
+  </h1>
+
+  <p><strong>Title:</strong> {{ service.name }}</p>
+  <p><strong>Description:</strong> {{ service.description }}</p>
+  <p><strong>Author:</strong> {{ service.author_username }}</p>
+
+  {% if user in service.neighbours.all %}
+    <a href="{% url 'lend_assist:service-neighbour-remove' serv_pk=service.id %}" class="btn btn-primary">
+      Remove me from service providers
+    </a>
+  {% else %}
+      <a href="{% url 'lend_assist:service-neighbour-add' serv_pk=service.id %}" class="btn btn-primary">
+        Provide this service
+      </a>
+  {% endif %}
+
+
+  <div class="ml-3">
+    <h4>List of service providers</h4>
+
+    {% for neighbour in service.neighbours.all %}
+        <hr>
+        <p><strong>Username:</strong> {{ neighbour.username }}</p>
+        <p><strong>Address:</strong> {{ neighbour.address }}</p>
+        <p><strong>phone:</strong> {{ neighbour.phone }}</p>
+
+    {% empty %}
+      <p>No one provides this service!</p>
+    {% endfor %}
+
+  </div>
+{% endblock %}

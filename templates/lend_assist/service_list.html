@@ -1,0 +1,54 @@
+{% extends "layouts/base-content.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %} Services {% endblock title %}
+
+{% block content %}
+  <h1>
+    Services
+  </h1>
+  <br>
+
+  <div class="form-inline">
+    <form action="" method="get" class="form-inline">
+      {{ search_form|crispy }}
+      <input class="btn btn-secondary" type="submit" value="🔍" >
+    </form>
+    <a href="{% url 'lend_assist:service-create' %}" class="btn btn-primary">
+          Create service
+    </a>
+  </div>
+
+  {% if service_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Providers</th>
+      </tr>
+
+      {% for service in service_list %}
+        <tr>
+          <td>
+              {{ service.id }}
+          </td>
+          <td>
+              <a href="{{ service.get_absolute_url }}">{{ service.name }}</a>
+          </td>
+          <td>
+              {{ service.neighbours.count }}
+          </td>
+      {% endfor %}
+    </table>
+
+  {% else %}
+      <p>There are no services.</p>
+  {% endif %}
+  <p>If you did not find suitable service describe your wishes in request form</p>
+  <p>
+    <a href="{% url 'lend_assist:request-create' %}" class="btn btn-primary">
+        Create request
+    </a>
+  </p>
+
+{% endblock %}
