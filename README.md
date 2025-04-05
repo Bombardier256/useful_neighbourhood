@@ -14,7 +14,7 @@ The idea was spontaneous.
 The main purpose of the WEB application is to provide platform where neighbours
 of one or couple block flat houses can help, assist, and provide services to 
 each other.
-<img height="700" src="/Users/dmytropetetskiy/PycharmProjects/useful_neighbourhood/static/assets/img/UN_DB_scheme.png" width="1200"/>
+![](/Users/dmytropetetskiy/PycharmProjects/useful_neighbourhood/static/assets/img/UN_DB_scheme_rs.png)
 
 
 Configuration.
