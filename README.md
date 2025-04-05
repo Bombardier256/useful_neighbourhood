@@ -14,7 +14,7 @@ The idea was spontaneous.
 The main purpose of the WEB application is to provide platform where neighbours
 of one or couple block flat houses can help, assist, and provide services to 
 each other.
-![](/Users/dmytropetetskiy/Desktop/UN_DB_scheme.png)
+![](/Users/dmytropetetskiy/PycharmProjects/useful_neighbourhood/static/assets/img/UN_DB_scheme.png)
 
 
 Configuration.
@@ -26,33 +26,33 @@ DJANGO ORM framework and Django Bootstrap5 template.
 Installation instructions
 
 In order to run the project following packages have to be installed:
-asgiref==3.8.1
-black==25.1.0
-click==8.1.8
-crispy-bootstrap4==2024.10
-Django==4.2
-django-crispy-forms==2.3
-django-debug-toolbar==3.2.4
-django-environ==0.12.0
-flake8==5.0.4
-flake8-quotes==3.3.1
-flake8-variables-names==0.0.5
-gunicorn==23.0.0
-h11==0.14.0
-mccabe==0.7.0
-mypy-extensions==1.0.0
-packaging==24.2
-pathspec==0.12.1
-pep8-naming==0.13.2
-platformdirs==4.3.6
-psycopg2-binary==2.9.10
-pycodestyle==2.9.1
-pyflakes==2.5.0
-python-decouple==3.8
-python-dotenv==1.1.0
-sqlparse==0.5.3
-uvicorn==0.34.0
-whitenoise==6.9.0
+* asgiref==3.8.1
+* black==25.1.0
+* click==8.1.8
+* crispy-bootstrap4==2024.10
+* Django==4.2
+* django-crispy-forms==2.3
+* django-debug-toolbar==3.2.4
+* django-environ==0.12.0
+* flake8==5.0.4
+* flake8-quotes==3.3.1
+* flake8-variables-names==0.0.5
+* gunicorn==23.0.0
+* h11==0.14.0
+* mccabe==0.7.0
+* mypy-extensions==1.0.0
+* packaging==24.2
+* pathspec==0.12.1
+* pep8-naming==0.13.2
+* platformdirs==4.3.6
+* psycopg2-binary==2.9.10
+* pycodestyle==2.9.1
+* pyflakes==2.5.0
+* python-decouple==3.8
+* python-dotenv==1.1.0
+* sqlparse==0.5.3
+* uvicorn==0.34.0
+* whitenoise==6.9.0
 
 
 Operating instructions.
